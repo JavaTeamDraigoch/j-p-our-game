@@ -1,0 +1,15 @@
+This folder is for gathering team resourses like presentations/ links to presentation and other material for learning how to make a game. 
+
+Add links here:
+
++++++++++++++++++++++++++++++++++++++
+Tutorial links
++++++++++++++++++++++++++++++++++++++
+
+https://softuni.bg/trainings/resources/video/3046/video-30-yanuari-2015-bogomil-dimitrov-java-basics-jan-2015
+https://softuni.bg/trainings/resources/video/5761/video-17-september-2015-bogomil-dimitrov-java-fundamentals-september-2015
+https://softuni.bg/trainings/resources/video/6526/video-2-november-2015-bogomil-dimitrov-java-fundamentals-october-2015
+
+
+
+
