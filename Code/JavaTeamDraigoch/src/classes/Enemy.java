@@ -1,5 +1,5 @@
 package classes;
 
 
-public class Enemy extends Classes {
+public class Enemy {
 }
