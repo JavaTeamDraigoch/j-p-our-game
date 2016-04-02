@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Minotaur {
 
-    Animation isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
+    private Animation movingUp, movingDown, movingLeft, movingRight;
 
     private Image enemyIMG;
     private SpriteSheet spriteSheetEnemy;
@@ -25,10 +25,44 @@ public class Minotaur {
 
     private int health;
     private int level;
-    private int moveSpeed;
+    private double moveSpeed;
     private int meleeAttack;
     private int spellAttack;
     private int armor;
     private int lightRadius;
     private String playerName;
+
+    public Minotaur (int enemyCoordX, int enemyCoordY) throws SlickException{
+
+        this.enemyCoordX = enemyCoordX;
+        this.enemyCoordY = enemyCoordY;
+
+        this.moveSpeed = 0.15;
+
+        this.enemyIMG = new Image("aa.txt");
+        this.spriteSheetEnemy = new SpriteSheet(this.enemyIMG,0,0,156,180);
+        this.assetsEnemy = new Assets();
+
+    }
+
+    public void init(GameContainer gameContainer) throws SlickException {
+
+
+    }
+
+    public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+
+        this.spriteSheetEnemy.getSubImage(0,0,156,180).draw(this.enemyShiftX,this.enemyShiftY);
+
+        this.movingUp = new Animation(this.spriteSheetEnemy,200);
+        this.movingDown = new Animation(this.spriteSheetEnemy,200);
+        this.movingLeft = new Animation(this.spriteSheetEnemy,200);
+        this.movingRight = new Animation(this.spriteSheetEnemy,200);
+
+        /// get hero coordinates
+
+    }
+
+
+
 }

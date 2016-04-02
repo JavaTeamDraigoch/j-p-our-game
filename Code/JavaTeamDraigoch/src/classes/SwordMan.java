@@ -1,5 +1,7 @@
 package classes;
 
+import game.*;
+import game.Game;
 import gfx.Assets;
 import items.Sword;
 import org.newdawn.slick.*;
@@ -83,7 +85,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY += this.moveSpeed;
 
-            if (this.manCoordY > 300){
+            if (this.manCoordY > Game.MOST_UP_COORDINATE){
 
                 this.manCoordY -= this.moveSpeed;
 
@@ -95,7 +97,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY -= this.moveSpeed;
 
-            if (this.manCoordY < -2720){
+            if (this.manCoordY < Game.MOST_DOWN_COORDINATE){
 
                 this.manCoordY += this.moveSpeed;
 
@@ -107,7 +109,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX += this.moveSpeed;
 
-            if (this.manCoordX > 400){
+            if (this.manCoordX > Game.MOST_LEFT_COORDINATE){
 
                 this.manCoordX -= this.moveSpeed;
 
@@ -119,7 +121,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX -= this.moveSpeed;
 
-            if (this.manCoordX < -2685){
+            if (this.manCoordX < Game.MOST_RIGHT_COORDINATE){
 
                 this.manCoordX += this.moveSpeed;
 

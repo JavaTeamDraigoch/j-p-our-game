@@ -18,6 +18,10 @@ public class Game extends StateBasedGame {
     public static final int MENU_STATE = 0;
     public static final int PLAY_STATE = 1;
 
+    public static final int MOST_LEFT_COORDINATE = 400;
+    public static final int MOST_RIGHT_COORDINATE = -2685;
+    public static final int MOST_UP_COORDINATE = 300;
+    public static final int MOST_DOWN_COORDINATE = -2720;
 
 
 
