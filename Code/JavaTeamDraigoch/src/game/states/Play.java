@@ -37,7 +37,7 @@ public class Play extends BasicGameState {
 
         levelOneMap = new Image("resources/img/test.jpg");
 
-        this.swordMan = new SwordMan(20,300,"Alex");
+        this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
 
 
 
@@ -46,7 +46,7 @@ public class Play extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        levelOneMap.draw(0,0);
+        levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
 
         this.swordMan.render(gameContainer,graphics);
 
