@@ -35,7 +35,7 @@ public class Play extends BasicGameState {
         //backGround = new Image("resources/img/basicGrid20x20.png");
         //levelOneMap = new Image("resources/img/World.png");
 
-        levelOneMap = new Image("resources/img/test.jpg");
+        levelOneMap = new Image("resources/img/t.png");
 
         this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
 

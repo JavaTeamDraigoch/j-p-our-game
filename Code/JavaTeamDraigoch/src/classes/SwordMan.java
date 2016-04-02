@@ -93,7 +93,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY -= delta * .1f;
 
-            if (this.manCoordY < -190){
+            if (this.manCoordY < -2720){
 
                 this.manCoordY += delta * .1f;
 
@@ -105,7 +105,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX += delta * .1f;
 
-            if (this.manCoordX > 405){
+            if (this.manCoordX > 400){
 
                 this.manCoordX -= delta * .1f;
 
@@ -117,7 +117,7 @@ public class SwordMan  {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX -= delta * .1f;
 
-            if (this.manCoordX < -575){
+            if (this.manCoordX < -2685){
 
                 this.manCoordX += delta * .1f;
 
