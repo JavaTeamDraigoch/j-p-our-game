@@ -26,9 +26,6 @@ public class Game extends StateBasedGame {
         this.addState(new Menu(MENU_STATE));
         this.addState(new Play(PLAY_STATE));
 
-
-
-
     }
 
     @Override

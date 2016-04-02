@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class SwordMan  {
 
-    Animation swordMan, isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
+    //Animation swordMan, isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
     private Image playerIMG;
     private SpriteSheet spriteSheetPlayer;
@@ -30,7 +30,7 @@ public class SwordMan  {
 
     private int health;
     private int level;
-    private int moveSpeed;
+    private double moveSpeed;
     private int meleeAttack;
     private int spellAttack;
     private int armor;
@@ -42,6 +42,8 @@ public class SwordMan  {
         this.manCoordX = manCoordX;
         this.manCoordY = manCoordY;
         this.playerName = playerName;
+
+        this.moveSpeed = 0.2;
 
         this.playerIMG = new Image("resources/img/testPlayer.png");
         this.spriteSheetPlayer = new SpriteSheet(this.playerIMG,95,587,50,114);
@@ -79,11 +81,11 @@ public class SwordMan  {
         if (this.input.isKeyDown(Input.KEY_UP)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordY += delta * .1f;
+            this.manCoordY += this.moveSpeed;
 
             if (this.manCoordY > 300){
 
-                this.manCoordY -= delta * .1f;
+                this.manCoordY -= this.moveSpeed;
 
             }
         }
@@ -91,11 +93,11 @@ public class SwordMan  {
         if (this.input.isKeyDown(Input.KEY_DOWN)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordY -= delta * .1f;
+            this.manCoordY -= this.moveSpeed;
 
             if (this.manCoordY < -2720){
 
-                this.manCoordY += delta * .1f;
+                this.manCoordY += this.moveSpeed;
 
             }
         }
@@ -103,11 +105,11 @@ public class SwordMan  {
         if (this.input.isKeyDown(Input.KEY_LEFT)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordX += delta * .1f;
+            this.manCoordX += this.moveSpeed;
 
             if (this.manCoordX > 400){
 
-                this.manCoordX -= delta * .1f;
+                this.manCoordX -= this.moveSpeed;
 
             }
         }
@@ -115,11 +117,11 @@ public class SwordMan  {
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordX -= delta * .1f;
+            this.manCoordX -= this.moveSpeed;
 
             if (this.manCoordX < -2685){
 
-                this.manCoordX += delta * .1f;
+                this.manCoordX += this.moveSpeed;
 
             }
         }
