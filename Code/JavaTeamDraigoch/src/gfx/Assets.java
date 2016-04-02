@@ -1,21 +1,43 @@
 package gfx;
 
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
 public class Assets {
 
     // configure all images paths here
 
-    String pMeleeImg = "/img/Player-Melee-Red.png";
+    private Image pMeleeImg;// = "resources/img/Player-Melee-Red.png";
     String prMageImg = "/img/Player-Mage-Green.png";
 
     String eMageImg = "/img/Enemy-Mage-Purple.png";
     String eMeleeImg = "/img/Enemy-Melle-Teal.png";
     String eBossImg = "/img/Enemy-Boss-Blue.png";
 
-    String WorldImg = "/img/World.png";
+    private Image worldImg; // = "/img/World.png";
 
-    String background = "/img/basicGrid20x20.png";
+    public Image background; // = "/img/basicGrid20x20.png";
 
+
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+
+        background = new Image("resources/img/basicGrid20x20.png");
+
+    }
+
+
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+
+        background.draw(0,0);
+
+
+    }
 
     //define method for all animations gChar(
     //                                  interfaceID(player type, enemy type),

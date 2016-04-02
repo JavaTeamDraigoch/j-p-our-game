@@ -1,9 +1,11 @@
 package game;
 
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 import game.states.Menu;
 import game.states.Play;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 
 /**
  * Created by TADimitrov on 3/30/2016.
@@ -17,17 +19,25 @@ public class Game extends StateBasedGame {
     public static final int PLAY_STATE = 1;
 
 
+
+
     public Game(String name) {
         super(name);
         this.addState(new Menu(MENU_STATE));
         this.addState(new Play(PLAY_STATE));
+
+
+
+
     }
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
         this.getState(MENU_STATE).init(gameContainer, this);
         this.getState(PLAY_STATE).init(gameContainer, this);
-        this.enterState(MENU_STATE);
+
+
+        this.enterState(PLAY_STATE);  /// MENU_STATE
     }
 
     public static void main(String[] args) {
