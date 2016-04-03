@@ -1,10 +1,7 @@
 package game.states;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -26,6 +23,9 @@ public class Menu extends BasicGameState {
     private Image loadButtonHover;
     private Image exitButtonNormal;
     private Image exitButtonHover;
+    private Image[] diabloFrames;
+    private Animation title;
+    private int[] titleDuration;
 
     public Menu(int state) {
         this.setStateID(state);
@@ -39,32 +39,29 @@ public class Menu extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.setBackground();
+        this.setTitle();
         this.setButtons();
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException {
         this.drawBackgound();
-        this.drawButtonsNormal();
-
-        int xpos = Mouse.getX();
-        int ypos = Mouse.getY();
-        g.drawString("X" + xpos, 50, 100);
-        g.drawString("Y" + ypos, 50, 150);
+        this.drawTitle();
+        this.drawButtons();
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         int xpos = Mouse.getX();
         int ypos = Mouse.getY();
-        this.buttonsFunctionality(xpos, ypos,stateBasedGame);
+        this.buttonsFunctionality(xpos, ypos, stateBasedGame);
     }
 
     private void buttonsFunctionality(int x, int y, StateBasedGame stateBasedGame) {
-        boolean isPlayButtonSelected = (x >= 270 && x <= 555) && (y >= 205 && y <= 260);
-        boolean isSaveButtonSelected = (x >= 270 && x <= 555) && (y >= 140 && y <= 195);
-        boolean isLoadButtonSelected = (x >= 270 && x <= 555) && (y >= 75 && y <= 130);
-        boolean isExitButtonSelected = (x >= 270 && x <= 555) && (y >= 10 && y <= 65);
+        boolean isPlayButtonSelected = (x >= 257 && x <= 542) && (y >= 205 && y <= 260);
+        boolean isSaveButtonSelected = (x >= 257 && x <= 542) && (y >= 140 && y <= 195);
+        boolean isLoadButtonSelected = (x >= 257 && x <= 542) && (y >= 75 && y <= 130);
+        boolean isExitButtonSelected = (x >= 257 && x <= 542) && (y >= 10 && y <= 65);
         if (isPlayButtonSelected) {
             this.playButton = this.playButtonHover;
             if (Mouse.isButtonDown(0)) {
@@ -100,11 +97,15 @@ public class Menu extends BasicGameState {
         this.background.draw(0, 0);
     }
 
-    private void drawButtonsNormal() {
-        this.playButton.draw(270, 340);
-        this.saveButton.draw(270, 405);
-        this.loadButton.draw(270, 470);
-        this.exitButton.draw(270, 535);
+    private void drawButtons() {
+        this.playButton.draw(257, 340);
+        this.saveButton.draw(257, 405);
+        this.loadButton.draw(257, 470);
+        this.exitButton.draw(257, 535);
+    }
+
+    private void drawTitle() {
+        this.title.draw(225, 40);
     }
 
     private void setBackground() {
@@ -129,6 +130,16 @@ public class Menu extends BasicGameState {
             this.loadButtonHover = new Image("res/menu/load_hover.png");
             this.exitButtonNormal = new Image("res/menu/exit_normal.png");
             this.exitButtonHover = new Image("res/menu/exit_hover.png");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setTitle() {
+        try {
+            this.diabloFrames = new Image[]{new Image("res/menu/diablo_fire_frame_1.png"), new Image("res/menu/diablo_fire_frame_2.png"), new Image("res/menu/diablo_fire_frame_3.png")};
+            this.titleDuration = new int[]{500, 500, 500};
+            this.title = new Animation(this.diabloFrames, titleDuration);
         } catch (SlickException e) {
             e.printStackTrace();
         }
