@@ -58,9 +58,7 @@ public class SwordMan  {
 
     public void init(GameContainer gameContainer) throws SlickException {
 
-        //this.assets = new Assets();
 
-        //this.movingUp = new Animation(this.spriteSheetPlayer,200);
     }
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {

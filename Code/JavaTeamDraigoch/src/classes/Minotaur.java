@@ -32,15 +32,15 @@ public class Minotaur {
     private int lightRadius;
     private String playerName;
 
-    public Minotaur (int enemyCoordX, int enemyCoordY) throws SlickException{
+    public Minotaur (int enemyShiftX, int enemyShiftY) throws SlickException{
 
         this.enemyCoordX = enemyCoordX;
         this.enemyCoordY = enemyCoordY;
 
-        this.moveSpeed = 0.15;
+        this.moveSpeed = 0.05;
 
-        this.enemyIMG = new Image("aa.txt");
-        this.spriteSheetEnemy = new SpriteSheet(this.enemyIMG,0,0,156,180);
+        this.enemyIMG = new Image("resources/img/m.png");
+        this.spriteSheetEnemy = new SpriteSheet(this.enemyIMG,0,0,50,75);
         this.assetsEnemy = new Assets();
 
     }
@@ -52,17 +52,19 @@ public class Minotaur {
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
 
-        this.spriteSheetEnemy.getSubImage(0,0,156,180).draw(this.enemyShiftX,this.enemyShiftY);
+        this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.enemyCoordX,this.enemyCoordY);
 
-        this.movingUp = new Animation(this.spriteSheetEnemy,200);
-        this.movingDown = new Animation(this.spriteSheetEnemy,200);
-        this.movingLeft = new Animation(this.spriteSheetEnemy,200);
-        this.movingRight = new Animation(this.spriteSheetEnemy,200);
-
-        /// get hero coordinates
-
+//        this.movingUp = new Animation(this.spriteSheetEnemy,100);
+//        this.movingDown = new Animation(this.spriteSheetEnemy,100);
+//        this.movingLeft = new Animation(this.spriteSheetEnemy,100);
+//        this.movingRight = new Animation(this.spriteSheetEnemy,100);
+        //this.enemyIMG.draw();
     }
 
+    public void update(GameContainer gameContainer, int delta) throws SlickException {
 
+
+
+    }
 
 }

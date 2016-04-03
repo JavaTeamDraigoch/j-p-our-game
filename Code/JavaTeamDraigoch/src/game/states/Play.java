@@ -1,5 +1,6 @@
 package game.states;
 
+import classes.Minotaur;
 import classes.SwordMan;
 import gfx.Assets;
 import org.newdawn.slick.GameContainer;
@@ -18,7 +19,9 @@ public class Play extends BasicGameState {
     private Image levelOneMap;
     private Image backGround;
 
-    private SwordMan swordMan;
+    public SwordMan swordMan;
+    public Minotaur minotaur;
+
 
     public Play(int state) {
         this.stateID = state;
@@ -39,6 +42,10 @@ public class Play extends BasicGameState {
 
         this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
 
+        for (int i = 0; i <= 10; i++) {
+
+            this.minotaur = new Minotaur(-i * 60, -i * 100);
+        }
 
 
     }
@@ -49,6 +56,7 @@ public class Play extends BasicGameState {
         levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
 
         this.swordMan.render(gameContainer,graphics);
+        this.minotaur.render(gameContainer,graphics);
 
     }
 
@@ -57,6 +65,7 @@ public class Play extends BasicGameState {
 
         /// if mission accomplished stateBasedGame -- main menu or next level
         this.swordMan.update(gameContainer, this.stateID);
+        this.minotaur.update(gameContainer,this.stateID);
 
     }
 }
