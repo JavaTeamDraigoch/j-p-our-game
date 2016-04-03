@@ -10,5 +10,6 @@
     <orderEntry type="library" name="resources" level="project" />
     <orderEntry type="library" exported="" name="libs" level="project" />
     <orderEntry type="library" name="windows" level="project" />
+    <orderEntry type="library" name="res" level="project" />
   </component>
 </module>

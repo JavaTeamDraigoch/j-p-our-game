@@ -14,7 +14,7 @@ public class Assets {
     // configure all images paths here
 
     private Image pMeleeImg;// = "resources/img/Player-Melee-Red.png";
-    String prMageImg = "/img/Player-Mage-Green.png";
+    String pMageImg = "/img/Player-Mage-Green.png";
 
     String eMageImg = "/img/Enemy-Mage-Purple.png";
     String eMeleeImg = "/img/Enemy-Melle-Teal.png";
