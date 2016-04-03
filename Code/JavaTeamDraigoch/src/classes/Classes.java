@@ -6,8 +6,8 @@ public abstract class Classes {
     private int health;
     private int level;
     private int moveSpeed;
-    private int meleeAttack;
-    private int spellAttack;
+    private int attack;
+    //private int spellAttack;
     private int armor;
     private int lightRadius;
 
@@ -15,8 +15,8 @@ public abstract class Classes {
         this.health = health;
         this.level = level;
         this.moveSpeed = moveSpeed;
-        this.meleeAttack = meleeAttack;
-        this.spellAttack = spellAttack;
+        this.attack = meleeAttack;
+        //this.spellAttack = spellAttack;
         this.armor = armor;
         this.lightRadius = lightRadius;
     }
