@@ -38,7 +38,7 @@ public class Game extends StateBasedGame {
         this.getState(PLAY_STATE).init(gameContainer, this);
 
 
-        this.enterState(PLAY_STATE);  /// MENU_STATE
+        this.enterState(MENU_STATE);  /// MENU_STATE
     }
 
     public static void main(String[] args) {
