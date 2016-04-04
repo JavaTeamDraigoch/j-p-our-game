@@ -1,5 +1,7 @@
 package classes;
 
+import game.*;
+import game.Game;
 import gfx.Assets;
 import items.Sword;
 import org.newdawn.slick.*;
@@ -18,9 +20,6 @@ public class Minotaur {
 
     public float enemyCoordX = 0 ;
     public  float enemyCoordY = 0  ;
-
-    private float enemyShiftX = enemyCoordX + 400;
-    private float enemyShiftY = enemyCoordY + 300;
 
     private Input input;
 
@@ -55,17 +54,15 @@ public class Minotaur {
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
 
-        //graphics.translate(this.enemyCoordX, this.enemyCoordY);
-
-
         this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.enemyCoordX, this.enemyCoordY);
 
         this.movingUp = new Animation(this.spriteSheetEnemy,100);
         this.movingDown = new Animation(this.spriteSheetEnemy,100);
         this.movingLeft = new Animation(this.spriteSheetEnemy,100);
         this.movingRight = new Animation(this.spriteSheetEnemy,100);
-        //this.enemyIMG.draw(150,150);
 
+        // test enemy coordinates
+        graphics.drawString("enemy X: " + this.enemyCoordX + "\nenemy Y: " + this.enemyCoordY, 500,20);
 
     }
 
@@ -73,24 +70,40 @@ public class Minotaur {
 
         this.input = gameContainer.getInput();
 
+
         if (this.input.isKeyDown(Input.KEY_UP)){
 
-            this.enemyCoordY += SwordMan.moveSpeed;
+            if (Math.round(SwordMan.manCoordY) <= Game.MOST_UP_COORDINATE - 1) {
+
+                this.enemyCoordY += SwordMan.moveSpeed;
+            }
+
         }
 
         if (this.input.isKeyDown(Input.KEY_DOWN)){
 
-            this.enemyCoordY -= SwordMan.moveSpeed;
+            if ( Math.round(SwordMan.manCoordY) >= Game.MOST_DOWN_COORDINATE + 1){
+
+                this.enemyCoordY -= SwordMan.moveSpeed;
+            }
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)){
 
-            this.enemyCoordX += SwordMan.moveSpeed;
+            if (Math.round(SwordMan.manCoordX) <= Game.MOST_LEFT_COORDINATE - 1){
+
+                this.enemyCoordX += SwordMan.moveSpeed;
+
+            }
+
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
 
-            this.enemyCoordX -= SwordMan.moveSpeed;
+            if (Math.round(SwordMan.manCoordX) >= Game.MOST_RIGHT_COORDINATE + 1){
+
+                this.enemyCoordX -= SwordMan.moveSpeed;
+            }
         }
 
     }

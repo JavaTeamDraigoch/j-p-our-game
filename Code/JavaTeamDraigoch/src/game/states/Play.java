@@ -47,7 +47,7 @@ public class Play extends BasicGameState {
 //            this.minotaur = new Minotaur(-i * 60, -i * 100);
 //        }
 
-         this.minotaur = new Minotaur(300,100);
+         this.minotaur = new Minotaur(20,20);
 
     }
 
@@ -59,9 +59,6 @@ public class Play extends BasicGameState {
 
         this.swordMan.render(gameContainer,graphics);
 
-        //this.minotaur.render(gameContainer,graphics);
-
-        //graphics.translate(this.minotaur.enemyCoordX, this.minotaur.enemyCoordY);
 
         this.minotaur.render(gameContainer,graphics);
 

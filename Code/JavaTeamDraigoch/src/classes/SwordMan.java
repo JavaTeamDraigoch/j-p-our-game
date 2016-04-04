@@ -19,11 +19,11 @@ public class SwordMan {
 
     boolean quit = false;
 
-    public float manCoordX = 0;
-    public  float manCoordY = 0;
+    public static float manCoordX = 0;
+    public static  float manCoordY = 0;
 
-    private float shiftX = manCoordX + 400;
-    private float shiftY = manCoordY + 300;
+    public static float shiftX = manCoordX + 400;
+    public static float shiftY = manCoordY + 300;
 
     private Animation staying, movingUp, movingDown, movingLeft, movingRight;
     int[] duration = {200,200};
@@ -72,7 +72,8 @@ public class SwordMan {
         this.movingRight = new Animation(this.spriteSheetPlayer,200);
 
         /// get hero coordinates
-        graphics.drawString("hero X: " + this.manCoordX + "\nhero Y: " + this.manCoordY, 400,20);
+        graphics.drawString("hero  manCoordX: " + this.manCoordX + "\nhero Y: " + this.manCoordY, 0,20);
+        //graphics.drawString("hero X: " + this.shiftX + "\nhero Y: " + this.shiftY, 200,20);
     }
 
     public void update(GameContainer gameContainer, int delta) throws SlickException {
@@ -84,7 +85,7 @@ public class SwordMan {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY += this.moveSpeed;
 
-            if (this.manCoordY > Game.MOST_UP_COORDINATE){
+            if (Math.round(this.manCoordY) > Game.MOST_UP_COORDINATE){
 
                 this.manCoordY -= this.moveSpeed;
 
@@ -96,7 +97,7 @@ public class SwordMan {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY -= this.moveSpeed;
 
-            if (this.manCoordY < Game.MOST_DOWN_COORDINATE){
+            if (Math.round(this.manCoordY) < Game.MOST_DOWN_COORDINATE){
 
                 this.manCoordY += this.moveSpeed;
 
@@ -108,7 +109,7 @@ public class SwordMan {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX += this.moveSpeed;
 
-            if (this.manCoordX > Game.MOST_LEFT_COORDINATE){
+            if (Math.round(this.manCoordX) > Game.MOST_LEFT_COORDINATE ){
 
                 this.manCoordX -= this.moveSpeed;
 
@@ -120,7 +121,7 @@ public class SwordMan {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX -= this.moveSpeed;
 
-            if (this.manCoordX < Game.MOST_RIGHT_COORDINATE){
+            if (Math.round(this.manCoordX) < Game.MOST_RIGHT_COORDINATE){
 
                 this.manCoordX += this.moveSpeed;
 
