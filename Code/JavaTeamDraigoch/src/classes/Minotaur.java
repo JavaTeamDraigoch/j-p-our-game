@@ -19,8 +19,11 @@ public class Minotaur {
     private Assets assetsEnemy;
     private SwordMan swordMan;
 
-    public float enemyCoordX = 0 ;
-    public  float enemyCoordY = 0  ;
+    public static float enemyCoordX = 0;
+    public static float enemyCoordY = 0;
+
+    public static int enemyCropWidth ;
+    public static int enemyCropHeight;
 
     private Input input;
 
@@ -40,10 +43,13 @@ public class Minotaur {
         this.enemyCoordX = enemyCoordX;
         this.enemyCoordY = enemyCoordY;
 
+        this.enemyCropWidth = 50;
+        this.enemyCropHeight = 75;
+
         this.moveSpeed = 0.05;
 
         this.enemyIMG = new Image("resources/img/m.png");
-        this.spriteSheetEnemy = new SpriteSheet(this.enemyIMG,0,0,50,75);
+        this.spriteSheetEnemy = new SpriteSheet(this.enemyIMG,0,0,this.enemyCropHeight,this.enemyCropHeight);
         this.assetsEnemy = new Assets();
 
     }
@@ -74,9 +80,33 @@ public class Minotaur {
 
         if (this.input.isKeyDown(Input.KEY_UP)){
 
-            if (Math.round(SwordMan.manCoordY) <= Game.MOST_UP_COORDINATE - 1) {
+            if (Math.round(SwordMan.manCoordY) < Game.MOST_UP_COORDINATE - 1) {
 
                 this.enemyCoordY += SwordMan.moveSpeed;
+
+            }
+
+            if ((this.enemyCoordY + this.enemyCropHeight) > SwordMan.shiftY){
+
+                //this.enemyCoordY -= SwordMan.moveSpeed;
+
+                if (this.enemyCoordX <= SwordMan.shiftX + this.enemyCropWidth ){
+
+                    //this.enemyCoordY -= SwordMan.moveSpeed;
+
+                    if ((this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX ){
+
+                        //this.enemyCoordY -= SwordMan.moveSpeed;
+
+                        if ((SwordMan.shiftY + SwordMan.manCropHeight) > this.enemyCoordY ){
+
+                            this.enemyCoordY -= SwordMan.moveSpeed;
+                        }
+
+                    }
+                }
+
+
             }
 
         }
@@ -87,6 +117,8 @@ public class Minotaur {
 
                 this.enemyCoordY -= SwordMan.moveSpeed;
             }
+
+
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)){
@@ -116,19 +148,22 @@ public class Minotaur {
 
         if (inRadius){
 
-            if (this.enemyCoordX >= SwordMan.shiftX){
+            if (this.enemyCoordX > SwordMan.shiftX + SwordMan.manCropWidth){
 
                 this.enemyCoordX -= this.moveSpeed;
             }
-            if (this.enemyCoordX <= SwordMan.shiftX){
+
+            if (this.enemyCoordX + this.enemyCropWidth < SwordMan.shiftX){
 
                 this.enemyCoordX += this.moveSpeed;
             }
-            if (this.enemyCoordY >= SwordMan.shiftY){
+
+            if (this.enemyCoordY + this.enemyCropHeight > SwordMan.shiftY){
 
                 this.enemyCoordY -= this.moveSpeed;
             }
-            if (this.enemyCoordY <= SwordMan.shiftY){
+
+            if (this.enemyCoordY < SwordMan.shiftY + SwordMan.manCropHeight){
 
                 this.enemyCoordY += this.moveSpeed;
             }

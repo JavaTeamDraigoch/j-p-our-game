@@ -25,6 +25,9 @@ public class SwordMan {
     public static float shiftX = manCoordX + 400;
     public static float shiftY = manCoordY + 300;
 
+    public static int manCropWidth;
+    public static int manCropHeight;
+
     private Animation staying, movingUp, movingDown, movingLeft, movingRight;
     int[] duration = {200,200};
 
@@ -48,8 +51,11 @@ public class SwordMan {
 
         this.moveSpeed = 0.2;
 
+        this.manCropWidth = 50;
+        this.manCropHeight = 114;
+
         this.playerIMG = new Image("resources/img/testPlayer.png");
-        this.spriteSheetPlayer = new SpriteSheet(this.playerIMG,95,587,50,114);
+        this.spriteSheetPlayer = new SpriteSheet(this.playerIMG,95,587,this.manCropWidth, this.manCropHeight);
 
         this.assets = new Assets();
 
@@ -85,7 +91,19 @@ public class SwordMan {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY += this.moveSpeed;
 
-            if (Math.round(this.manCoordY) > Game.MOST_UP_COORDINATE){
+            if ((Math.round(this.manCoordY) > Game.MOST_UP_COORDINATE)){
+
+                this.manCoordY -= this.moveSpeed;
+
+            }
+
+            boolean betweenYY = (this.shiftY < Minotaur.enemyCoordY + Minotaur.enemyCropHeight) &&
+                                (Minotaur.enemyCoordY - this.shiftY < Minotaur.enemyCropHeight);
+
+            boolean betweenXX = (this.shiftX + this.manCropWidth > Minotaur.enemyCoordX) &&
+                                (this.shiftX  < Minotaur.enemyCoordX + Minotaur.enemyCropWidth);
+
+            if (betweenYY && betweenXX){
 
                 this.manCoordY -= this.moveSpeed;
 
