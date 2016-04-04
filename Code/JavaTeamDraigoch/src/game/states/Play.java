@@ -19,8 +19,8 @@ public class Play extends BasicGameState {
     public Image levelOneMap;
     private Image backGround;
 
-    public SwordMan swordMan;
-    public Minotaur minotaur;
+    public static SwordMan swordMan;
+    public static Minotaur minotaur;
 
 
     public Play(int state) {

@@ -17,6 +17,7 @@ public class Minotaur {
     private Image enemyIMG;
     private SpriteSheet spriteSheetEnemy;
     private Assets assetsEnemy;
+    private SwordMan swordMan;
 
     public float enemyCoordX = 0 ;
     public  float enemyCoordY = 0  ;
@@ -104,6 +105,36 @@ public class Minotaur {
 
                 this.enemyCoordX -= SwordMan.moveSpeed;
             }
+        }
+
+
+        //boolean inRadius = Math.abs(Math.sqrt(Math.pow(SwordMan.manCoordX - this.enemyCoordX,2) + Math.pow(SwordMan.manCoordY - this.enemyCoordY, 2))) < 200;
+        boolean inRadius = Math.abs(SwordMan.shiftX - this.enemyCoordX) < 200 &&
+                Math.abs(SwordMan.shiftY - this.enemyCoordY) < 300;
+
+
+
+        if (inRadius){
+
+            if (this.enemyCoordX >= SwordMan.shiftX){
+
+                this.enemyCoordX -= this.moveSpeed;
+            }
+            if (this.enemyCoordX <= SwordMan.shiftX){
+
+                this.enemyCoordX += this.moveSpeed;
+            }
+            if (this.enemyCoordY >= SwordMan.shiftY){
+
+                this.enemyCoordY -= this.moveSpeed;
+            }
+            if (this.enemyCoordY <= SwordMan.shiftY){
+
+                this.enemyCoordY += this.moveSpeed;
+            }
+
+
+
         }
 
     }
