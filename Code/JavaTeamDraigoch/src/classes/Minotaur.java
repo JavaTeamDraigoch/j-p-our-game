@@ -7,6 +7,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
+
 public class Minotaur {
 
     private Animation movingUp, movingDown, movingLeft, movingRight;
@@ -15,11 +16,13 @@ public class Minotaur {
     private SpriteSheet spriteSheetEnemy;
     private Assets assetsEnemy;
 
-    public float enemyCoordX = 0;
-    public  float enemyCoordY = 0;
+    public float enemyCoordX = 0 ;
+    public  float enemyCoordY = 0  ;
 
     private float enemyShiftX = enemyCoordX + 400;
     private float enemyShiftY = enemyCoordY + 300;
+
+    private Input input;
 
     int[] duration = {200,200};
 
@@ -32,7 +35,7 @@ public class Minotaur {
     private int lightRadius;
     private String playerName;
 
-    public Minotaur (int enemyShiftX, int enemyShiftY) throws SlickException{
+    public Minotaur (int enemyCoordX, int enemyCoordY) throws SlickException{
 
         this.enemyCoordX = enemyCoordX;
         this.enemyCoordY = enemyCoordY;
@@ -52,18 +55,43 @@ public class Minotaur {
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
 
-        this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.enemyCoordX,this.enemyCoordY);
+        //graphics.translate(this.enemyCoordX, this.enemyCoordY);
 
-//        this.movingUp = new Animation(this.spriteSheetEnemy,100);
-//        this.movingDown = new Animation(this.spriteSheetEnemy,100);
-//        this.movingLeft = new Animation(this.spriteSheetEnemy,100);
-//        this.movingRight = new Animation(this.spriteSheetEnemy,100);
-        //this.enemyIMG.draw();
+
+        this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.enemyCoordX, this.enemyCoordY);
+
+        this.movingUp = new Animation(this.spriteSheetEnemy,100);
+        this.movingDown = new Animation(this.spriteSheetEnemy,100);
+        this.movingLeft = new Animation(this.spriteSheetEnemy,100);
+        this.movingRight = new Animation(this.spriteSheetEnemy,100);
+        //this.enemyIMG.draw(150,150);
+
+
     }
 
     public void update(GameContainer gameContainer, int delta) throws SlickException {
 
+        this.input = gameContainer.getInput();
 
+        if (this.input.isKeyDown(Input.KEY_UP)){
+
+            this.enemyCoordY += SwordMan.moveSpeed;
+        }
+
+        if (this.input.isKeyDown(Input.KEY_DOWN)){
+
+            this.enemyCoordY -= SwordMan.moveSpeed;
+        }
+
+        if (this.input.isKeyDown(Input.KEY_LEFT)){
+
+            this.enemyCoordX += SwordMan.moveSpeed;
+        }
+
+        if (this.input.isKeyDown(Input.KEY_RIGHT)){
+
+            this.enemyCoordX -= SwordMan.moveSpeed;
+        }
 
     }
 

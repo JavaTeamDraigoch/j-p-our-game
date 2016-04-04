@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
     private int stateID;
 
-    private Image levelOneMap;
+    public Image levelOneMap;
     private Image backGround;
 
     public SwordMan swordMan;
@@ -38,24 +38,31 @@ public class Play extends BasicGameState {
         //backGround = new Image("resources/img/basicGrid20x20.png");
         //levelOneMap = new Image("resources/img/World.png");
 
-        levelOneMap = new Image("resources/img/t.png");
+        this.levelOneMap = new Image("resources/img/t.png");
 
         this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
 
-        for (int i = 0; i <= 10; i++) {
+//        for (int i = 0; i <= 10; i++) {
+//
+//            this.minotaur = new Minotaur(-i * 60, -i * 100);
+//        }
 
-            this.minotaur = new Minotaur(-i * 60, -i * 100);
-        }
-
+         this.minotaur = new Minotaur(300,100);
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
+        this.levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
+
 
         this.swordMan.render(gameContainer,graphics);
+
+        //this.minotaur.render(gameContainer,graphics);
+
+        //graphics.translate(this.minotaur.enemyCoordX, this.minotaur.enemyCoordY);
+
         this.minotaur.render(gameContainer,graphics);
 
     }

@@ -9,7 +9,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class SwordMan  {
+public class SwordMan {
 
     //Animation swordMan, isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
@@ -32,7 +32,7 @@ public class SwordMan  {
 
     private int health;
     private int level;
-    private double moveSpeed;
+    public static double moveSpeed;
     private int meleeAttack;
     private int spellAttack;
     private int armor;
@@ -40,6 +40,7 @@ public class SwordMan  {
     private String playerName;
 
     public SwordMan (int manCoordX,int manCoordY, String playerName) throws SlickException {
+
 
         this.manCoordX = manCoordX;
         this.manCoordY = manCoordY;
