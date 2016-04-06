@@ -7,7 +7,7 @@ import items.Sword;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
+import org.newdawn.slick.util.pathfinding.heuristics.ManhattanHeuristic;
 
 
 public class Minotaur {
@@ -118,6 +118,19 @@ public class Minotaur {
                 this.enemyCoordY -= SwordMan.moveSpeed;
             }
 
+            boolean inY1 = (this.enemyCoordY + this.enemyCropHeight) > SwordMan.shiftY;
+            boolean inY2 = (this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX;
+            boolean inX1 = this.enemyCoordX <= SwordMan.shiftX + this.enemyCropWidth;
+            boolean inX2 = (this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX;
+
+            boolean x1 = SwordMan.shiftX <= (this.enemyCoordX + this.enemyCropWidth);
+            boolean x2 = this.enemyCoordX <= (SwordMan.shiftX + SwordMan.manCropWidth);
+            boolean y1 = Math.abs(this.enemyCoordY - (SwordMan.shiftY + SwordMan.manCropHeight)) < 2;
+
+            if (x1 && x2 && y1){
+
+                this.enemyCoordY += SwordMan.moveSpeed;
+            }
 
         }
 
@@ -129,6 +142,15 @@ public class Minotaur {
 
             }
 
+            boolean inY1 = this.enemyCoordY <= (SwordMan.shiftY + SwordMan.manCropHeight);
+            boolean inY2 = (this.enemyCoordY + this.enemyCropHeight) >= SwordMan.shiftY;
+            boolean inX = Math.abs((this.enemyCoordX + this.enemyCropWidth) - SwordMan.shiftX) < 2;
+
+            if (inY1 && inY2 && inX){
+
+                this.enemyCoordX -= SwordMan.moveSpeed;
+            }
+
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
@@ -137,10 +159,22 @@ public class Minotaur {
 
                 this.enemyCoordX -= SwordMan.moveSpeed;
             }
+
+            boolean inY1 = this.enemyCoordY <= (SwordMan.shiftY + SwordMan.manCropHeight);;
+            boolean inY2 = (this.enemyCoordY + this.enemyCropHeight) >= SwordMan.shiftY;;
+            boolean inX = Math.abs((SwordMan.shiftX + SwordMan.manCropWidth) - this.enemyCoordX ) < 2;
+
+            if (inY1 && inY2 && inX){
+
+                this.enemyCoordX += SwordMan.moveSpeed;
+            }
         }
 
 
         //boolean inRadius = Math.abs(Math.sqrt(Math.pow(SwordMan.manCoordX - this.enemyCoordX,2) + Math.pow(SwordMan.manCoordY - this.enemyCoordY, 2))) < 200;
+
+        /// this will be in method ! :) inRadius
+
         boolean inRadius = Math.abs(SwordMan.shiftX - this.enemyCoordX) < 200 &&
                 Math.abs(SwordMan.shiftY - this.enemyCoordY) < 300;
 

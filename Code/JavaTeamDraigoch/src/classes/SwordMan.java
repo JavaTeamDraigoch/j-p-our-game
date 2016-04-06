@@ -101,7 +101,7 @@ public class SwordMan {
                                 (Minotaur.enemyCoordY - this.shiftY < Minotaur.enemyCropHeight);
 
             boolean betweenXX = (this.shiftX + this.manCropWidth > Minotaur.enemyCoordX) &&
-                                (this.shiftX  < Minotaur.enemyCoordX + Minotaur.enemyCropWidth);
+                                (this.shiftX  < Minotaur.enemyCoordX + this.manCropWidth);
 
             if (betweenYY && betweenXX){
 
@@ -120,6 +120,18 @@ public class SwordMan {
                 this.manCoordY += this.moveSpeed;
 
             }
+
+            boolean betweenXX = (this.shiftX + this.manCropWidth > Minotaur.enemyCoordX) &&
+                    (this.shiftX  < Minotaur.enemyCoordX + this.manCropWidth);
+
+
+            boolean inY = Math.abs((this.shiftY + this.manCropHeight) - Minotaur.enemyCoordY) < 2;
+
+            if (inY && betweenXX){
+
+                this.manCoordY += this.moveSpeed;
+
+            }
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)){
@@ -132,6 +144,14 @@ public class SwordMan {
                 this.manCoordX -= this.moveSpeed;
 
             }
+
+            boolean inY1 = this.shiftY <= (Minotaur.enemyCoordY + Minotaur.enemyCropHeight);
+            boolean inY2 = (this.shiftY + this.manCropHeight) >= Minotaur.enemyCoordY;
+            boolean inX = Math.abs(this.shiftX - (Minotaur.enemyCoordX + Minotaur.enemyCropWidth)) < 2 ;
+
+            if (inY1 && inY2 && inX){
+                this.manCoordX -= this.moveSpeed;
+            }
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
@@ -143,6 +163,15 @@ public class SwordMan {
 
                 this.manCoordX += this.moveSpeed;
 
+            }
+
+            boolean inY1 = this.shiftY <= (Minotaur.enemyCoordY + Minotaur.enemyCropHeight);
+            boolean inY2 = (this.shiftY + this.manCropHeight) >= Minotaur.enemyCoordY;
+            boolean inX = Math.abs((this.shiftX + this.manCropWidth) - Minotaur.enemyCoordX  ) < 2 ;
+
+            if (inY1 && inY2 && inX){
+
+                this.manCoordX += this.moveSpeed;
             }
         }
 
