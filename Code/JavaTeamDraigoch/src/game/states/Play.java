@@ -10,6 +10,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by TADimitrov on 3/30/2016.
  */
@@ -22,6 +25,11 @@ public class Play extends BasicGameState {
     public static SwordMan swordMan;
     public static Minotaur minotaur;
 
+    private List<Minotaur> minotaurs = new ArrayList<>();
+
+    public List<Minotaur> getMinotaurs() {
+        return minotaurs;
+    }
 
     public Play(int state) {
         this.stateID = state;
@@ -44,7 +52,7 @@ public class Play extends BasicGameState {
 
         for (int i = 0; i <= 2; i++) {
 
-            this.minotaur = new Minotaur(i * 60, 20);
+            this.minotaurs.add(new Minotaur( i * 100, 50));
         }
 
          //this.minotaur = new Minotaur(1200,20);
@@ -60,7 +68,12 @@ public class Play extends BasicGameState {
         this.swordMan.render(gameContainer,graphics);
 
 
-        this.minotaur.render(gameContainer,graphics);
+        //this.minotaur.render(gameContainer,graphics);
+
+        for(Minotaur minotaur: getMinotaurs()){
+
+            minotaur.render(gameContainer,graphics);
+        }
 
     }
 
@@ -69,7 +82,12 @@ public class Play extends BasicGameState {
 
         /// if mission accomplished stateBasedGame -- main menu or next level
         this.swordMan.update(gameContainer, this.stateID);
-        this.minotaur.update(gameContainer,this.stateID);
+        //this.minotaur.update(gameContainer,this.stateID);
+
+        for(Minotaur minotaur: getMinotaurs()){
+
+            minotaur.update(gameContainer, this.stateID);
+        }
 
     }
 }

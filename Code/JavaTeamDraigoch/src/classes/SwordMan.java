@@ -9,7 +9,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class SwordMan {
+public class SwordMan  {
 
     //Animation swordMan, isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
@@ -209,4 +209,7 @@ public class SwordMan {
 
 
 
+    public int getID() {
+        return 0;
+    }
 }
