@@ -42,12 +42,12 @@ public class Play extends BasicGameState {
 
         this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
 
-//        for (int i = 0; i <= 10; i++) {
-//
-//            this.minotaur = new Minotaur(-i * 60, -i * 100);
-//        }
+        for (int i = 0; i <= 2; i++) {
 
-         this.minotaur = new Minotaur(20,20);
+            this.minotaur = new Minotaur(i * 60, 20);
+        }
+
+         //this.minotaur = new Minotaur(1200,20);
 
     }
 

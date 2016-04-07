@@ -61,7 +61,37 @@ public class SwordMan {
 
     }
 
+    public static float getManCoordX() {
+        return manCoordX;
+    }
 
+    public static float getManCoordY() {
+        return manCoordY;
+    }
+
+    public static float getShiftX() {
+        return shiftX;
+    }
+
+    public static float getShiftY() {
+        return shiftY;
+    }
+
+    public static int getManCropWidth() {
+        return manCropWidth;
+    }
+
+    public static int getManCropHeight() {
+        return manCropHeight;
+    }
+
+    public static double getMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public SpriteSheet getSpriteSheetPlayer() {
+        return spriteSheetPlayer;
+    }
 
     public void init(GameContainer gameContainer) throws SlickException {
 
@@ -70,15 +100,15 @@ public class SwordMan {
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
 
-        this.spriteSheetPlayer.getSubImage(95,587,50,114).draw(this.shiftX,this.shiftY);
+        this.spriteSheetPlayer.getSubImage(95,587,50,114).draw(this.getShiftX(),this.getShiftY());
 
-        this.movingUp = new Animation(this.spriteSheetPlayer,200);
-        this.movingDown = new Animation(this.spriteSheetPlayer,200);
-        this.movingLeft = new Animation(this.spriteSheetPlayer,200);
-        this.movingRight = new Animation(this.spriteSheetPlayer,200);
+        this.movingUp = new Animation(this.getSpriteSheetPlayer(),200);
+        this.movingDown = new Animation(this.getSpriteSheetPlayer(),200);
+        this.movingLeft = new Animation(this.getSpriteSheetPlayer(),200);
+        this.movingRight = new Animation(this.getSpriteSheetPlayer(),200);
 
         /// get hero coordinates
-        graphics.drawString("hero  manCoordX: " + this.manCoordX + "\nhero Y: " + this.manCoordY, 0,20);
+        graphics.drawString("hero  manCoordX: " + this.getManCoordX() + "\nhero Y: " + this.getManCoordY(), 0,20);
         //graphics.drawString("hero X: " + this.shiftX + "\nhero Y: " + this.shiftY, 200,20);
     }
 
@@ -89,23 +119,23 @@ public class SwordMan {
         if (this.input.isKeyDown(Input.KEY_UP)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordY += this.moveSpeed;
+            this.manCoordY += this.getMoveSpeed();
 
-            if ((Math.round(this.manCoordY) > Game.MOST_UP_COORDINATE)){
+            if ((Math.round(this.getManCoordY()) > Game.MOST_UP_COORDINATE)){
 
-                this.manCoordY -= this.moveSpeed;
+                this.manCoordY -= this.getMoveSpeed();
 
             }
 
-            boolean betweenYY = (this.shiftY < Minotaur.enemyCoordY + Minotaur.enemyCropHeight) &&
-                                (Minotaur.enemyCoordY - this.shiftY < Minotaur.enemyCropHeight);
+            boolean betweenYY = (this.getShiftY() < Minotaur.getEnemyCoordY() + Minotaur.getEnemyCropHeight()) &&
+                                (Minotaur.getEnemyCoordY() - this.getShiftY() < Minotaur.getEnemyCropHeight());
 
-            boolean betweenXX = (this.shiftX + this.manCropWidth > Minotaur.enemyCoordX) &&
-                                (this.shiftX  < Minotaur.enemyCoordX + this.manCropWidth);
+            boolean betweenXX = (this.getShiftX() + this.getManCropWidth() > Minotaur.getEnemyCoordX()) &&
+                                (this.getShiftX()  < Minotaur.getEnemyCoordX() + this.getManCropWidth());
 
             if (betweenYY && betweenXX){
 
-                this.manCoordY -= this.moveSpeed;
+                this.manCoordY -= this.getMoveSpeed();
 
             }
         }
@@ -113,23 +143,23 @@ public class SwordMan {
         if (this.input.isKeyDown(Input.KEY_DOWN)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordY -= this.moveSpeed;
+            this.manCoordY -= this.getMoveSpeed();
 
-            if (Math.round(this.manCoordY) < Game.MOST_DOWN_COORDINATE){
+            if (Math.round(this.getManCoordY()) < Game.MOST_DOWN_COORDINATE){
 
-                this.manCoordY += this.moveSpeed;
+                this.manCoordY += this.getMoveSpeed();
 
             }
 
-            boolean betweenXX = (this.shiftX + this.manCropWidth > Minotaur.enemyCoordX) &&
-                    (this.shiftX  < Minotaur.enemyCoordX + this.manCropWidth);
+            boolean betweenXX = (this.getShiftX() + this.getManCropWidth() > Minotaur.getEnemyCoordX()) &&
+                    (this.getShiftX()  < Minotaur.getEnemyCoordX() + this.getManCropWidth());
 
 
-            boolean inY = Math.abs((this.shiftY + this.manCropHeight) - Minotaur.enemyCoordY) < 2;
+            boolean inY = Math.abs((this.getShiftY() + this.getManCropHeight()) - Minotaur.getEnemyCoordY()) < 2;
 
             if (inY && betweenXX){
 
-                this.manCoordY += this.moveSpeed;
+                this.manCoordY += this.getMoveSpeed();
 
             }
         }
@@ -137,41 +167,41 @@ public class SwordMan {
         if (this.input.isKeyDown(Input.KEY_LEFT)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordX += this.moveSpeed;
+            this.manCoordX += this.getMoveSpeed();
 
-            if (Math.round(this.manCoordX) > Game.MOST_LEFT_COORDINATE ){
+            if (Math.round(this.getManCoordX()) > Game.MOST_LEFT_COORDINATE ){
 
-                this.manCoordX -= this.moveSpeed;
+                this.manCoordX -= this.getMoveSpeed();
 
             }
 
-            boolean inY1 = this.shiftY <= (Minotaur.enemyCoordY + Minotaur.enemyCropHeight);
-            boolean inY2 = (this.shiftY + this.manCropHeight) >= Minotaur.enemyCoordY;
-            boolean inX = Math.abs(this.shiftX - (Minotaur.enemyCoordX + Minotaur.enemyCropWidth)) < 2 ;
+            boolean inY1 = this.getShiftY() <= (Minotaur.getEnemyCoordY() + Minotaur.getEnemyCropHeight());
+            boolean inY2 = (this.getShiftY() + this.getManCropHeight()) >= Minotaur.getEnemyCoordY();
+            boolean inX = Math.abs(this.getShiftX() - (Minotaur.getEnemyCoordX() + Minotaur.getEnemyCropWidth())) < 2 ;
 
             if (inY1 && inY2 && inX){
-                this.manCoordX -= this.moveSpeed;
+                this.manCoordX -= this.getMoveSpeed();
             }
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
 
             /// staying = kartinkata s koiato da se dviji
-            this.manCoordX -= this.moveSpeed;
+            this.manCoordX -= this.getMoveSpeed();
 
-            if (Math.round(this.manCoordX) < Game.MOST_RIGHT_COORDINATE){
+            if (Math.round(this.getManCoordX()) < Game.MOST_RIGHT_COORDINATE){
 
-                this.manCoordX += this.moveSpeed;
+                this.manCoordX += this.getMoveSpeed();
 
             }
 
-            boolean inY1 = this.shiftY <= (Minotaur.enemyCoordY + Minotaur.enemyCropHeight);
-            boolean inY2 = (this.shiftY + this.manCropHeight) >= Minotaur.enemyCoordY;
-            boolean inX = Math.abs((this.shiftX + this.manCropWidth) - Minotaur.enemyCoordX  ) < 2 ;
+            boolean inY1 = this.getShiftY() <= (Minotaur.getEnemyCoordY() + Minotaur.getEnemyCropHeight());
+            boolean inY2 = (this.getShiftY() + this.getManCropHeight()) >= Minotaur.getEnemyCoordY();
+            boolean inX = Math.abs((this.getShiftX() + this.getManCropWidth()) - Minotaur.getEnemyCoordX()  ) < 2 ;
 
             if (inY1 && inY2 && inX){
 
-                this.manCoordX += this.moveSpeed;
+                this.manCoordX += this.getMoveSpeed();
             }
         }
 

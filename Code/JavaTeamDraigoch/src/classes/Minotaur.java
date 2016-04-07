@@ -17,7 +17,7 @@ public class Minotaur {
     private Image enemyIMG;
     private SpriteSheet spriteSheetEnemy;
     private Assets assetsEnemy;
-    private SwordMan swordMan;
+    //private SwordMan swordMan;
 
     public static float enemyCoordX = 0;
     public static float enemyCoordY = 0;
@@ -54,6 +54,50 @@ public class Minotaur {
 
     }
 
+    public static float getEnemyCoordX() {
+        return enemyCoordX;
+    }
+
+    public static float getEnemyCoordY() {
+        return enemyCoordY;
+    }
+
+    public static int getEnemyCropWidth() {
+        return enemyCropWidth;
+    }
+
+    public static int getEnemyCropHeight() {
+        return enemyCropHeight;
+    }
+
+    public double getMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public Animation getMovingUp() {
+        return movingUp;
+    }
+
+    public Animation getMovingDown() {
+        return movingDown;
+    }
+
+    public Animation getMovingLeft() {
+        return movingLeft;
+    }
+
+    public Animation getMovingRight() {
+        return movingRight;
+    }
+
+    public Input getInput() {
+        return input;
+    }
+
+    public SpriteSheet getSpriteSheetEnemy() {
+        return spriteSheetEnemy;
+    }
+
     public void init(GameContainer gameContainer) throws SlickException {
 
 
@@ -61,15 +105,15 @@ public class Minotaur {
 
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
 
-        this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.enemyCoordX, this.enemyCoordY);
+        this.spriteSheetEnemy.getSubImage(0,0,50,75).draw(this.getEnemyCoordX(), this.getEnemyCoordY());
 
-        this.movingUp = new Animation(this.spriteSheetEnemy,100);
-        this.movingDown = new Animation(this.spriteSheetEnemy,100);
-        this.movingLeft = new Animation(this.spriteSheetEnemy,100);
-        this.movingRight = new Animation(this.spriteSheetEnemy,100);
+        this.movingUp = new Animation(this.getSpriteSheetEnemy(),100);
+        this.movingDown = new Animation(this.getSpriteSheetEnemy(),100);
+        this.movingLeft = new Animation(this.getSpriteSheetEnemy(),100);
+        this.movingRight = new Animation(this.getSpriteSheetEnemy(),100);
 
         // test enemy coordinates
-        graphics.drawString("enemy X: " + this.enemyCoordX + "\nenemy Y: " + this.enemyCoordY, 500,20);
+        graphics.drawString("enemy X: " + this.getEnemyCoordX() + "\nenemy Y: " + this.getEnemyCoordY(), 500,20);
 
     }
 
@@ -80,27 +124,27 @@ public class Minotaur {
 
         if (this.input.isKeyDown(Input.KEY_UP)){
 
-            if (Math.round(SwordMan.manCoordY) < Game.MOST_UP_COORDINATE - 1) {
+            if (Math.round(SwordMan.getManCoordY()) < Game.MOST_UP_COORDINATE - 1) {
 
-                this.enemyCoordY += SwordMan.moveSpeed;
+                this.enemyCoordY += SwordMan.getMoveSpeed();
 
             }
 
-            if ((this.enemyCoordY + this.enemyCropHeight) > SwordMan.shiftY){
+            if ((this.getEnemyCoordY() + this.getEnemyCropHeight()) > SwordMan.getShiftY()){
 
                 //this.enemyCoordY -= SwordMan.moveSpeed;
 
-                if (this.enemyCoordX <= SwordMan.shiftX + this.enemyCropWidth ){
+                if (this.getEnemyCoordX() <= SwordMan.getShiftX() + this.getEnemyCropWidth() ){
 
                     //this.enemyCoordY -= SwordMan.moveSpeed;
 
-                    if ((this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX ){
+                    if ((this.getEnemyCoordX() + this.getEnemyCropWidth()) >= SwordMan.getShiftX() ){
 
                         //this.enemyCoordY -= SwordMan.moveSpeed;
 
-                        if ((SwordMan.shiftY + SwordMan.manCropHeight) > this.enemyCoordY ){
+                        if ((SwordMan.getShiftY() + SwordMan.getManCropHeight()) > this.getEnemyCoordY() ){
 
-                            this.enemyCoordY -= SwordMan.moveSpeed;
+                            this.enemyCoordY -= SwordMan.getMoveSpeed();
                         }
 
                     }
@@ -113,60 +157,60 @@ public class Minotaur {
 
         if (this.input.isKeyDown(Input.KEY_DOWN)){
 
-            if ( Math.round(SwordMan.manCoordY) >= Game.MOST_DOWN_COORDINATE + 1){
+            if ( Math.round(SwordMan.getManCoordY()) >= Game.MOST_DOWN_COORDINATE + 1){
 
-                this.enemyCoordY -= SwordMan.moveSpeed;
+                this.enemyCoordY -= SwordMan.getMoveSpeed();
             }
 
-            boolean inY1 = (this.enemyCoordY + this.enemyCropHeight) > SwordMan.shiftY;
-            boolean inY2 = (this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX;
-            boolean inX1 = this.enemyCoordX <= SwordMan.shiftX + this.enemyCropWidth;
-            boolean inX2 = (this.enemyCoordX + this.enemyCropWidth) >= SwordMan.shiftX;
+            boolean inY1 = (this.getEnemyCoordY() + this.getEnemyCropHeight()) > SwordMan.getShiftY();
+            boolean inY2 = (this.getEnemyCoordX() + this.getEnemyCropWidth()) >= SwordMan.getShiftX();
+            boolean inX1 = this.getEnemyCoordX() <= SwordMan.getShiftX() + this.getEnemyCropWidth();
+            boolean inX2 = (this.getEnemyCoordX() + this.getEnemyCropWidth()) >= SwordMan.getShiftX();
 
-            boolean x1 = SwordMan.shiftX <= (this.enemyCoordX + this.enemyCropWidth);
-            boolean x2 = this.enemyCoordX <= (SwordMan.shiftX + SwordMan.manCropWidth);
-            boolean y1 = Math.abs(this.enemyCoordY - (SwordMan.shiftY + SwordMan.manCropHeight)) < 2;
+            boolean x1 = SwordMan.getShiftX() <= (this.getEnemyCoordX() + this.getEnemyCropWidth());
+            boolean x2 = this.getEnemyCoordX() <= (SwordMan.getShiftX() + SwordMan.getManCropWidth());
+            boolean y1 = Math.abs(this.getEnemyCoordY() - (SwordMan.getShiftY() + SwordMan.getManCropHeight())) < 2;
 
             if (x1 && x2 && y1){
 
-                this.enemyCoordY += SwordMan.moveSpeed;
+                this.enemyCoordY += SwordMan.getMoveSpeed();
             }
 
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)){
 
-            if (Math.round(SwordMan.manCoordX) <= Game.MOST_LEFT_COORDINATE - 1){
+            if (Math.round(SwordMan.getManCoordX()) <= Game.MOST_LEFT_COORDINATE - 1){
 
-                this.enemyCoordX += SwordMan.moveSpeed;
+                this.enemyCoordX += SwordMan.getMoveSpeed();
 
             }
 
-            boolean inY1 = this.enemyCoordY <= (SwordMan.shiftY + SwordMan.manCropHeight);
-            boolean inY2 = (this.enemyCoordY + this.enemyCropHeight) >= SwordMan.shiftY;
-            boolean inX = Math.abs((this.enemyCoordX + this.enemyCropWidth) - SwordMan.shiftX) < 2;
+            boolean inY1 = this.getEnemyCoordY() <= (SwordMan.getShiftY() + SwordMan.getManCropHeight());
+            boolean inY2 = (this.getEnemyCoordY() + this.getEnemyCropHeight()) >= SwordMan.getShiftY();
+            boolean inX = Math.abs((this.getEnemyCoordX() + this.getEnemyCropWidth()) - SwordMan.getShiftX()) < 2;
 
             if (inY1 && inY2 && inX){
 
-                this.enemyCoordX -= SwordMan.moveSpeed;
+                this.enemyCoordX -= SwordMan.getMoveSpeed();
             }
 
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)){
 
-            if (Math.round(SwordMan.manCoordX) >= Game.MOST_RIGHT_COORDINATE + 1){
+            if (Math.round(SwordMan.getManCoordX()) >= Game.MOST_RIGHT_COORDINATE + 1){
 
-                this.enemyCoordX -= SwordMan.moveSpeed;
+                this.enemyCoordX -= SwordMan.getMoveSpeed();
             }
 
-            boolean inY1 = this.enemyCoordY <= (SwordMan.shiftY + SwordMan.manCropHeight);;
-            boolean inY2 = (this.enemyCoordY + this.enemyCropHeight) >= SwordMan.shiftY;;
-            boolean inX = Math.abs((SwordMan.shiftX + SwordMan.manCropWidth) - this.enemyCoordX ) < 2;
+            boolean inY1 = this.getEnemyCoordY() <= (SwordMan.getShiftY() + SwordMan.getManCropHeight());;
+            boolean inY2 = (this.getEnemyCoordY() + this.getEnemyCropHeight()) >= SwordMan.getShiftY();;
+            boolean inX = Math.abs((SwordMan.getShiftX() + SwordMan.getManCropWidth()) - this.getEnemyCoordX() ) < 2;
 
             if (inY1 && inY2 && inX){
 
-                this.enemyCoordX += SwordMan.moveSpeed;
+                this.enemyCoordX += SwordMan.getMoveSpeed();
             }
         }
 
@@ -175,31 +219,31 @@ public class Minotaur {
 
         /// this will be in method ! :) inRadius
 
-        boolean inRadius = Math.abs(SwordMan.shiftX - this.enemyCoordX) < 200 &&
-                Math.abs(SwordMan.shiftY - this.enemyCoordY) < 300;
+        boolean inRadius = Math.abs(SwordMan.getShiftX() - this.getEnemyCoordX()) < 200 &&
+                Math.abs(SwordMan.getShiftY() - this.getEnemyCoordY()) < 300;
 
 
 
         if (inRadius){
 
-            if (this.enemyCoordX > SwordMan.shiftX + SwordMan.manCropWidth){
+            if (this.getEnemyCoordX() > SwordMan.getShiftX() + SwordMan.getManCropWidth()){
 
-                this.enemyCoordX -= this.moveSpeed;
+                this.enemyCoordX -= this.getMoveSpeed();
             }
 
-            if (this.enemyCoordX + this.enemyCropWidth < SwordMan.shiftX){
+            if (this.getEnemyCoordX() + this.getEnemyCropWidth() < SwordMan.getShiftX()){
 
-                this.enemyCoordX += this.moveSpeed;
+                this.enemyCoordX += this.getMoveSpeed();
             }
 
-            if (this.enemyCoordY + this.enemyCropHeight > SwordMan.shiftY){
+            if (this.getEnemyCoordY() + this.getEnemyCropHeight() > SwordMan.getShiftY()){
 
-                this.enemyCoordY -= this.moveSpeed;
+                this.enemyCoordY -= this.getMoveSpeed();
             }
 
-            if (this.enemyCoordY < SwordMan.shiftY + SwordMan.manCropHeight){
+            if (this.getEnemyCoordY() < SwordMan.getShiftY() + SwordMan.getManCropHeight()){
 
-                this.enemyCoordY += this.moveSpeed;
+                this.enemyCoordY += this.getMoveSpeed();
             }
 
 
