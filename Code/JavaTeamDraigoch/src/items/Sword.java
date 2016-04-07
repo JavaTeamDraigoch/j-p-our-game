@@ -1,7 +1,7 @@
 package items;
 
 
-import contracts.Hero;
+import contracts.Character;
 
 public class Sword extends Equipment {
     private int meleeAttack;;
@@ -14,8 +14,8 @@ public class Sword extends Equipment {
     }
 
     @Override
-    public void applyItemEffect(Hero hero) {
-        hero.setMeleeAttack(this.meleeAttack);
-        hero.setLightRadius(this.lightRadius);
+    public void applyItemEffect(Character character) {
+        character.setMeleeAttack(this.meleeAttack);
+        character.setLightRadius(this.lightRadius);
     }
 }

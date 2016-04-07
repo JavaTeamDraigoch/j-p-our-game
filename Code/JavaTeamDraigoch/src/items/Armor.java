@@ -1,7 +1,7 @@
 package items;
 
 
-import contracts.Hero;
+import contracts.Character;
 
 public class Armor extends Equipment {
 
@@ -17,9 +17,9 @@ public class Armor extends Equipment {
     }
 
     @Override
-    public void applyItemEffect(Hero hero) {
-        hero.setHealth(this.health);
-        hero.setMoveSpeed(this.moveSpeed);
-        hero.setArmor(this.armor);
+    public void applyItemEffect(Character character) {
+        character.setHealth(this.health);
+        character.setMoveSpeed(this.moveSpeed);
+        character.setArmor(this.armor);
     }
 }

@@ -1,7 +1,7 @@
 package items;
 
 
-import contracts.Hero;
+import contracts.Character;
 
 public class HealthPotion extends Potion {
     int health;
@@ -12,7 +12,7 @@ public class HealthPotion extends Potion {
     }
 
     @Override
-    public void applyItemEffect(Hero hero) {
-        hero.setHealth(this.health);
+    public void applyItemEffect(Character character) {
+        character.setHealth(this.health);
     }
 }

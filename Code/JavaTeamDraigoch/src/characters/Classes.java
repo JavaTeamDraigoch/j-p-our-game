@@ -1,4 +1,4 @@
-package classes;
+package characters;
 
 
 public abstract class Classes {

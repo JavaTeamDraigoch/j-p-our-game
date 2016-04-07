@@ -1,8 +1,9 @@
 package game.states;
 
-import classes.Minotaur;
-import classes.SwordMan;
-import gfx.Assets;
+import characters.Minotaur;
+import characters.SwordMan;
+import contracts.Character;
+import manageres.CharacterManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -18,12 +19,14 @@ import java.util.List;
  */
 public class Play extends BasicGameState {
     private int stateID;
+    private CharacterManager characterManager = new CharacterManager();
 
     public Image levelOneMap;
     private Image backGround;
 
     public static SwordMan swordMan;
-    public static Minotaur minotaur;
+    public Minotaur minotaur1;
+    public Minotaur minotaur2;
 
     private List<Minotaur> minotaurs = new ArrayList<>();
 
@@ -48,32 +51,38 @@ public class Play extends BasicGameState {
 
         this.levelOneMap = new Image("resources/img/t.png");
 
-        this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Hero ;)
+        //this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Character ;)
 
-        for (int i = 0; i <= 2; i++) {
+        //for (int i = 0; i <= 2; i++) {
 
-            this.minotaurs.add(new Minotaur( i * 100, 50));
-        }
+           // this.minotaurs.add(new Minotaur( i * 100, 100));
+        //}
 
-         //this.minotaur = new Minotaur(1200,20);
+         //this.minotaur1 = new Minotaur(900,900);
+        //this.minotaur2 = new Minotaur(300,300);
+
+        characterManager.createCharacter();
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        this.levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
+       // this.levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
 
 
         this.swordMan.render(gameContainer,graphics);
 
 
-        //this.minotaur.render(gameContainer,graphics);
+        //this.minotaur1.render(gameContainer,graphics);
+        ///this.minotaur2.render(gameContainer,graphics);
 
-        for(Minotaur minotaur: getMinotaurs()){
+       // for(Minotaur minotaur: getMinotaurs()){
 
-            minotaur.render(gameContainer,graphics);
-        }
+           // minotaur.render(gameContainer,graphics);
+        //}
+
+        characterManager.drawCharacter();
 
     }
 
@@ -82,12 +91,14 @@ public class Play extends BasicGameState {
 
         /// if mission accomplished stateBasedGame -- main menu or next level
         this.swordMan.update(gameContainer, this.stateID);
-        //this.minotaur.update(gameContainer,this.stateID);
+        this.minotaur1.update(gameContainer,this.stateID);
+        this.minotaur2.update(gameContainer,this.stateID);
 
-        for(Minotaur minotaur: getMinotaurs()){
+        //for(Minotaur minotaur: getMinotaurs()){
 
-            minotaur.update(gameContainer, this.stateID);
-        }
+           // minotaur.update(gameContainer, this.stateID);
+       // }
+        characterManager.moveCharacter();
 
     }
 }

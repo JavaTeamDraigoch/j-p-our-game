@@ -1,4 +1,4 @@
-package classes;
+package characters;
 
 
 public class Enemy {

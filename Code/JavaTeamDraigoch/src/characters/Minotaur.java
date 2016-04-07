@@ -1,23 +1,16 @@
-package classes;
+package characters;
 
-import game.*;
 import game.Game;
 import gfx.Assets;
-import items.Sword;
 import org.newdawn.slick.*;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.pathfinding.heuristics.ManhattanHeuristic;
 
 
 public class Minotaur {
 
     private Animation movingUp, movingDown, movingLeft, movingRight;
-
     private Image enemyIMG;
     private SpriteSheet spriteSheetEnemy;
     private Assets assetsEnemy;
-    //private SwordMan swordMan;
 
     public static float enemyCoordX = 0;
     public static float enemyCoordY = 0;
@@ -113,7 +106,7 @@ public class Minotaur {
         this.movingRight = new Animation(this.getSpriteSheetEnemy(),100);
 
         // test enemy coordinates
-        graphics.drawString("enemy X: " + this.getEnemyCoordX() + "\nenemy Y: " + this.getEnemyCoordY(), 500,20);
+        //graphics.drawString("enemy X: " + this.getEnemyCoordX() + "\nenemy Y: " + this.getEnemyCoordY(), 500,20);
 
     }
 

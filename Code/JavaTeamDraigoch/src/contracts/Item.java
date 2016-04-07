@@ -5,5 +5,5 @@ package contracts;
  */
 public interface Item {
     int getItemID();
-    void applyItemEffect(Hero hero);
+    void applyItemEffect(Character character);
 }
