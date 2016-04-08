@@ -15,8 +15,10 @@ public class SwordsManManager {
     private final float MOVE_SPEED = 0.2f;
     private final int ARMOR = 800;
     private final int LIGHT_RADIUS = 10;
-    private final int POS_X = 300;
-    private final int POS_Y = 400;
+    private final int POS_X = 0;
+    private final int POS_Y = 0;
+    private final int START_POS_X = 300;
+    private final int START_POS_Y = 400;
     private final int ANIMATION_DURATION = 200;
     private final int MELEE_ATTACK = 350;
     private final int IMAGE_HEIGHT = 114;
@@ -30,7 +32,7 @@ public class SwordsManManager {
 
     public void createCharacter() {
         try {
-            this.character.setSpriteSheet(new SpriteSheet("res/players/swordsman.png", IMAGE_WIDTH, IMAGE_HEIGHT));
+            this.character.setSpriteSheet(new SpriteSheet("res/players/swordsman.png", START_POS_X, START_POS_Y));
             this.character.setImageHeight(IMAGE_HEIGHT);
             this.character.setImageWidth(IMAGE_WIDTH);
         } catch (SlickException e) {
@@ -45,14 +47,14 @@ public class SwordsManManager {
     }
 
     public void drawCharacter() {
-        character.getSpriteSheet().getSubImage(95, 587, 50, 114).draw(this.character.getPosX(), this.character.getPosY());
+        character.getSpriteSheet().getSubImage(95, 587, 50, 114).draw(300, 400);
     }
 
     public void moveCharacter(GameContainer gameContainer) {
         this.input = gameContainer.getInput();
 
         if (this.input.isKeyDown(Input.KEY_UP)) {
-            this.character.setPosY(-this.character.getMoveSpeed());
+            this.character.setPosY(this.character.getMoveSpeed());
             detectMapBoundies();
 
             //Enemy move to detectEnemyCollision
@@ -72,7 +74,7 @@ public class SwordsManManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_DOWN)) {
-            this.character.setPosY(+this.character.getMoveSpeed());
+            this.character.setPosY(-this.character.getMoveSpeed());
             detectMapBoundies();
 
             //Enemy move to detectEnemyCollision
@@ -92,7 +94,7 @@ public class SwordsManManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)) {
-            this.character.setPosX(-this.character.getMoveSpeed());
+            this.character.setPosX(+this.character.getMoveSpeed());
             detectMapBoundies();
 
             /*
@@ -107,7 +109,7 @@ public class SwordsManManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)) {
-            this.character.setPosX(+this.character.getMoveSpeed());
+            this.character.setPosX(-this.character.getMoveSpeed());
             detectMapBoundies();
 
             //Enemy move to detectEnemyCollision
@@ -128,26 +130,25 @@ public class SwordsManManager {
     }
 
     private void detectMapBoundies() {
-        boolean isTopReached = this.character.getPosY() <= GameEngine.MOST_UP_COORDINATE;
+        boolean isTopReached = this.character.getPosY() - this.START_POS_Y >= GameEngine.MOST_UP_COORDINATE;
         if (isTopReached) {
-            this.character.setPosY(+this.character.getMoveSpeed());
-        }
-
-        boolean isBottomReached = this.character.getPosY() + this.character.getImageHeight() >= GameEngine.MOST_DOWN_COORDINATE;
-        if (isBottomReached) {
             this.character.setPosY(-this.character.getMoveSpeed());
         }
 
-        boolean isLeftReached = this.character.getPosX() <= GameEngine.MOST_LEFT_COORDINATE;
-        if (isLeftReached) {
-            this.character.setPosX(+this.character.getMoveSpeed());
+        boolean isBottomReached = this.character.getPosY() - this.START_POS_Y - this.character.getImageHeight() <= GameEngine.MOST_DOWN_COORDINATE;
+        if (isBottomReached) {
+            this.character.setPosY(+this.character.getMoveSpeed());
         }
 
-        boolean isRightReached = this.character.getPosX() + this.character.getImageWidth() >= GameEngine.MOST_RIGHT_COORDINATE;
-        if (isRightReached) {
+        boolean isLeftReached = this.character.getPosX() - this.START_POS_X >= GameEngine.MOST_LEFT_COORDINATE;
+        if (isLeftReached) {
             this.character.setPosX(-this.character.getMoveSpeed());
         }
 
+        boolean isRightReached = this.character.getPosX() - this.START_POS_X - this.character.getImageWidth() <= GameEngine.MOST_RIGHT_COORDINATE;
+        if (isRightReached) {
+            this.character.setPosX(+this.character.getMoveSpeed());
+        }
     }
 
     public Character getCharacter() {

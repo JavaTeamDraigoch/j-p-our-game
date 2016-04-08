@@ -67,7 +67,7 @@ public class Play extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        this.levelOneMap.draw(0, 0);
+        this.levelOneMap.draw(this.swordsManManager.getCharacter().getPosX(), this.swordsManManager.getCharacter().getPosY());
 
 
         this.swordsManManager.drawCharacter();
@@ -84,13 +84,11 @@ public class Play extends BasicGameState {
         // minotaur.render(gameContainer,graphics);
         //}
 
-        swordsManManager.drawCharacter();
 
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        this.levelOneMap.draw(this.swordsManManager.getCharacter().getPosX(), this.swordsManManager.getCharacter().getPosY());
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         this.swordsManManager.moveCharacter(gameContainer);
         /// if mission accomplished stateBasedGame -- main menu or next level
         // this.swordMan.update(gameContainer, this.stateID);

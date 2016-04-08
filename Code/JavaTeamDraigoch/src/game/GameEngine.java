@@ -16,9 +16,9 @@ public class GameEngine extends StateBasedGame {
     public static final int MENU_STATE = 0;
     public static final int PLAY_STATE = 1;
     public static final int MOST_LEFT_COORDINATE = 0;
-    public static final int MOST_RIGHT_COORDINATE = 2685;
+    public static final int MOST_RIGHT_COORDINATE = -3134;
     public static final int MOST_UP_COORDINATE = 0;
-    public static final int MOST_DOWN_COORDINATE = 2720;
+    public static final int MOST_DOWN_COORDINATE = -3134;
 
     public GameEngine(String name) {
         super(name);
