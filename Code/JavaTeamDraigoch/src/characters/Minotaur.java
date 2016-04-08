@@ -114,7 +114,7 @@ public class Minotaur {
 
         this.input = gameContainer.getInput();
 
-
+/*
         if (this.input.isKeyDown(Input.KEY_UP)){
 
             if (Math.round(SwordMan.getManCoordY()) < Game.MOST_UP_COORDINATE - 1) {
@@ -242,7 +242,7 @@ public class Minotaur {
 
 
         }
-
+*/
     }
 
 }
