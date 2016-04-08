@@ -1,9 +1,8 @@
 package game.states;
 
 import characters.Minotaur;
-import characters.SwordMan;
-import contracts.Character;
-import manageres.CharacterManager;
+import characters.SwordsMan;
+import manageres.SwordsManManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -19,12 +18,12 @@ import java.util.List;
  */
 public class Play extends BasicGameState {
     private int stateID;
-    private CharacterManager characterManager = new CharacterManager();
+    private SwordsManManager swordsManManager = new SwordsManManager();
 
     public Image levelOneMap;
     private Image backGround;
 
-    public static SwordMan swordMan;
+    public static SwordsMan swordMan;
     public Minotaur minotaur1;
     public Minotaur minotaur2;
 
@@ -51,54 +50,57 @@ public class Play extends BasicGameState {
 
         this.levelOneMap = new Image("resources/img/t.png");
 
-        //this.swordMan = new SwordMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Character ;)
+        //this.swordMan = new SwordsMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Character ;)
 
         //for (int i = 0; i <= 2; i++) {
 
-           // this.minotaurs.add(new Minotaur( i * 100, 100));
+        // this.minotaurs.add(new Minotaur( i * 100, 100));
         //}
 
-         //this.minotaur1 = new Minotaur(900,900);
+        //this.minotaur1 = new Minotaur(900,900);
         //this.minotaur2 = new Minotaur(300,300);
 
-        characterManager.createCharacter();
+        this.swordsManManager.createCharacter();
 
     }
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-       // this.levelOneMap.draw(this.swordMan.manCoordX,this.swordMan.manCoordY);
+        this.levelOneMap.draw(0, 0);
 
 
-        this.swordMan.render(gameContainer,graphics);
+        this.swordsManManager.drawCharacter();
+        graphics.drawString("X "+ this.swordsManManager.getCharacter().getPosX()+ "", 100, 100);
+        graphics.drawString("Y "+ this.swordsManManager.getCharacter().getPosY()+ "", 150, 150);
+        // this.swordMan.render(gameContainer,graphics);
 
 
         //this.minotaur1.render(gameContainer,graphics);
         ///this.minotaur2.render(gameContainer,graphics);
 
-       // for(Minotaur minotaur: getMinotaurs()){
+        // for(Minotaur minotaur: getMinotaurs()){
 
-           // minotaur.render(gameContainer,graphics);
+        // minotaur.render(gameContainer,graphics);
         //}
 
-        characterManager.drawCharacter();
+        swordsManManager.drawCharacter();
 
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+        this.levelOneMap.draw(this.swordsManManager.getCharacter().getPosX(), this.swordsManManager.getCharacter().getPosY());
+        this.swordsManManager.moveCharacter(gameContainer);
         /// if mission accomplished stateBasedGame -- main menu or next level
-        this.swordMan.update(gameContainer, this.stateID);
-        this.minotaur1.update(gameContainer,this.stateID);
-        this.minotaur2.update(gameContainer,this.stateID);
+        // this.swordMan.update(gameContainer, this.stateID);
+        //this.minotaur1.update(gameContainer,this.stateID);
+        //this.minotaur2.update(gameContainer,this.stateID);
 
         //for(Minotaur minotaur: getMinotaurs()){
 
-           // minotaur.update(gameContainer, this.stateID);
-       // }
-        characterManager.moveCharacter();
+        // minotaur.update(gameContainer, this.stateID);
+        // }
 
     }
 }

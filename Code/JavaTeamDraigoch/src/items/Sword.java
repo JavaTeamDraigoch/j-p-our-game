@@ -1,10 +1,10 @@
 package items;
 
-
+import characters.SwordsMan;
 import contracts.Character;
 
 public class Sword extends Equipment {
-    private int meleeAttack;;
+    private int meleeAttack;
     private int lightRadius;
 
     public Sword(int itemID, int meleeAttack, int lightRadius) {
@@ -15,7 +15,10 @@ public class Sword extends Equipment {
 
     @Override
     public void applyItemEffect(Character character) {
-        character.setMeleeAttack(this.meleeAttack);
+        if (character instanceof SwordsMan) {
+            ((SwordsMan) character).setMeleeAttack(this.meleeAttack);
+        }
+
         character.setLightRadius(this.lightRadius);
     }
 }

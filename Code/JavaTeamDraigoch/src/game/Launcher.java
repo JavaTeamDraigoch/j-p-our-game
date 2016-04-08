@@ -3,8 +3,10 @@ package game;
 import org.newdawn.slick.SlickException;
 
 public class Launcher {
+    private final String GAME_NAME = "Diablo 4";
+
     public static void main(String[] args) {
-        Game game = new Game("Diablo");
+        GameEngine game = new GameEngine("GAME_NAME");
         try {
             game.run();
         } catch (SlickException e) {

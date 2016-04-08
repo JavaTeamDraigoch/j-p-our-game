@@ -8,19 +8,19 @@ import game.states.Play;
 /**
  * Created by TADimitrov on 3/30/2016.
  */
-public class Game extends StateBasedGame {
+public class GameEngine extends StateBasedGame {
     private static final int HEIGHT = 800;
     private static final int WIDTH = 600;
     private static final boolean FULL_SCREAN = false;
     public static final String NAME = "Diablo";
     public static final int MENU_STATE = 0;
     public static final int PLAY_STATE = 1;
-    public static final int MOST_LEFT_COORDINATE = 400;
-    public static final int MOST_RIGHT_COORDINATE = -2685;
-    public static final int MOST_UP_COORDINATE = 300;
-    public static final int MOST_DOWN_COORDINATE = -2720;
+    public static final int MOST_LEFT_COORDINATE = 0;
+    public static final int MOST_RIGHT_COORDINATE = 2685;
+    public static final int MOST_UP_COORDINATE = 0;
+    public static final int MOST_DOWN_COORDINATE = 2720;
 
-    public Game(String name) {
+    public GameEngine(String name) {
         super(name);
         this.addState(new Menu(MENU_STATE));
         this.addState(new Play(PLAY_STATE));
@@ -36,7 +36,7 @@ public class Game extends StateBasedGame {
 
     public void run() throws SlickException {
         AppGameContainer appGameContainer;
-        appGameContainer = new AppGameContainer(new Game(this.getTitle()));
+        appGameContainer = new AppGameContainer(new GameEngine(this.getTitle()));
         appGameContainer.setDisplayMode(HEIGHT,WIDTH,FULL_SCREAN);
         appGameContainer.start();
     }

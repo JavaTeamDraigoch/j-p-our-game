@@ -1,10 +1,11 @@
 package items;
 
-
+import characters.Mage;
 import contracts.Character;
 
 public class Wand extends Equipment {
-    private int spellAttack;;
+    private int spellAttack;
+    ;
     private int lightRadius;
 
     public Wand(int itemID, int spellAttack, int lightRadius) {
@@ -15,7 +16,10 @@ public class Wand extends Equipment {
 
     @Override
     public void applyItemEffect(Character character) {
-        character.setSpellAttack(this.spellAttack);
+        if (character instanceof Mage) {
+            ((Mage)character).setSpellAttack(this.spellAttack);
+        }
+
         character.setLightRadius(this.lightRadius);
     }
 }

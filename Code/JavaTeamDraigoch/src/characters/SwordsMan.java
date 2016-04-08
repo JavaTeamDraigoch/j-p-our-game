@@ -1,97 +1,21 @@
 package characters;
 
-import game.Game;
 import org.newdawn.slick.*;
 
+public class SwordsMan extends Player {
+    private int meleeAttack;
 
-public class SwordMan extends Player {
-    private final int ANIMATION_DURATION =  200;
-    private SpriteSheet spriteSheet;
-    private Image image;
-    private Animation staying, movingUp, movingDown, movingLeft, movingRight;
-
-    private float height;
-    private float width;
-
-
-    public SwordMan(String playerName, int health, float moveSpeed, int meleeAttack, int spellAttack, int armor, int lightRadius, float posX, float posY,float height, float width, Image image) {
-        super(playerName, health, moveSpeed, meleeAttack, spellAttack, armor, lightRadius, posX, posY);
-        this.height=height;
-        this.width=width;
-        this.image = image;// "resources/img/testPlayer.png"
-        //this.staying//init
-        //this.movingUp//int
+    public SwordsMan(String playerName, int health, float moveSpeed, int armor, int lightRadius, float posX, float posY, int meleeAttack) {
+        super(playerName, health, moveSpeed, armor, lightRadius, posX, posY);
+        this.meleeAttack = meleeAttack;
     }
 
-
-       // this.image = new Image("resources/img/testPlayer.png");
-        //this.spriteSheetPlayer = new SpriteSheet(this.image,95,587,this.manCropWidth, this.manCropHeight);
-
-
-    public SpriteSheet getSpriteSheet() {
-        return spriteSheet;
+    public int getMeleeAttack() {
+        return meleeAttack;
     }
 
-    public void setSpriteSheet(SpriteSheet spriteSheet) {
-        this.spriteSheet = spriteSheet;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public Animation getStaying() {
-        return staying;
-    }
-
-    public void setStaying(Animation staying) {
-        this.staying = staying;
-    }
-
-    public Animation getMovingUp() {
-        return movingUp;
-    }
-
-    public void setMovingUp(Animation movingUp) {
-        this.movingUp = movingUp;
-    }
-
-    public Animation getMovingDown() {
-        return movingDown;
-    }
-
-    public void setMovingDown(Animation movingDown) {
-        this.movingDown = movingDown;
-    }
-
-    public Animation getMovingLeft() {
-        return movingLeft;
-    }
-
-    public void setMovingLeft(Animation movingLeft) {
-        this.movingLeft = movingLeft;
-    }
-
-    public Animation getMovingRight() {
-        return movingRight;
-    }
-
-    public void setMovingRight(Animation movingRight) {
-        this.movingRight = movingRight;
-    }
-
-    @Override
-    public float getWidth() {
-        return width;
-    }
-
-    @Override
-    public float getHeight() {
-        return height;
+    public void setMeleeAttack(int meleeAttack) {
+        this.meleeAttack = meleeAttack;
     }
 
     @Deprecated
@@ -119,7 +43,7 @@ public class SwordMan extends Player {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY += this.getMoveSpeed();
 
-            if ((Math.round(this.getManCoordY()) > Game.MOST_UP_COORDINATE)){
+            if ((Math.round(this.getManCoordY()) > GameEngine.MOST_UP_COORDINATE)){
 
                 this.manCoordY -= this.getMoveSpeed();
 
@@ -143,7 +67,7 @@ public class SwordMan extends Player {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordY -= this.getMoveSpeed();
 
-            if (Math.round(this.getManCoordY()) < Game.MOST_DOWN_COORDINATE){
+            if (Math.round(this.getManCoordY()) < GameEngine.MOST_DOWN_COORDINATE){
 
                 this.manCoordY += this.getMoveSpeed();
 
@@ -167,7 +91,7 @@ public class SwordMan extends Player {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX += this.getMoveSpeed();
 
-            if (Math.round(this.getManCoordX()) > Game.MOST_LEFT_COORDINATE ){
+            if (Math.round(this.getManCoordX()) > GameEngine.MOST_LEFT_COORDINATE ){
 
                 this.manCoordX -= this.getMoveSpeed();
 
@@ -187,7 +111,7 @@ public class SwordMan extends Player {
             /// staying = kartinkata s koiato da se dviji
             this.manCoordX -= this.getMoveSpeed();
 
-            if (Math.round(this.getManCoordX()) < Game.MOST_RIGHT_COORDINATE){
+            if (Math.round(this.getManCoordX()) < GameEngine.MOST_RIGHT_COORDINATE){
 
                 this.manCoordX += this.getMoveSpeed();
 
