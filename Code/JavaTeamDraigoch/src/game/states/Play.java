@@ -71,8 +71,8 @@ public class Play extends BasicGameState {
 
 
         this.swordsManManager.drawCharacter();
-        graphics.drawString("X "+ this.swordsManManager.getCharacter().getPosX()+ "", 100, 100);
-        graphics.drawString("Y "+ this.swordsManManager.getCharacter().getPosY()+ "", 150, 150);
+        graphics.drawString("X "+ this.swordsManManager.getCharacter().getPosX()+ "", 0, 0);
+        graphics.drawString("Y "+ this.swordsManManager.getCharacter().getPosY()+ "", 0, 0);
         // this.swordMan.render(gameContainer,graphics);
 
 

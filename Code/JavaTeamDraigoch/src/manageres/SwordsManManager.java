@@ -17,8 +17,8 @@ public class SwordsManManager {
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
     private final int POS_Y = 0;
-    private final int START_POS_X = 300;
-    private final int START_POS_Y = 400;
+    private final int START_POS_X = POS_X + 400 - (this.IMAGE_WIDTH / 2);
+    private final int START_POS_Y = POS_Y + 300 - (this.IMAGE_HEIGHT / 2);
     private final int ANIMATION_DURATION = 200;
     private final int MELEE_ATTACK = 350;
     private final int IMAGE_HEIGHT = 114;
@@ -47,7 +47,7 @@ public class SwordsManManager {
     }
 
     public void drawCharacter() {
-        character.getSpriteSheet().getSubImage(95, 587, 50, 114).draw(300, 400);
+        character.getSpriteSheet().getSubImage(95, 587, 50, 114).draw(START_POS_X, START_POS_Y);
     }
 
     public void moveCharacter(GameContainer gameContainer) {
