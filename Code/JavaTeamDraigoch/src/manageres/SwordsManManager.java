@@ -57,6 +57,8 @@ public class SwordsManManager {
             this.character.setPosY(this.character.getMoveSpeed());
             detectMapBoundies();
 
+
+
             //Enemy move to detectEnemyCollision
             /*
             boolean betweenYY = (this.getShiftY() < Minotaur.getEnemyCoordY() + Minotaur.getEnemyCropHeight()) &&
