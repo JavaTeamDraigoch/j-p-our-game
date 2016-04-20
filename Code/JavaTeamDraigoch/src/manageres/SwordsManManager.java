@@ -2,6 +2,8 @@ package manageres;
 
 import java.util.List;
 
+import characters.Enemy;
+import characters.Minotaur;
 import game.GameEngine;
 import org.newdawn.slick.*;
 import characters.SwordsMan;
@@ -17,17 +19,18 @@ public class SwordsManManager {
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
     private final int POS_Y = 0;
-    private final int START_POS_X = POS_X + 400 - (this.IMAGE_WIDTH / 2);
-    private final int START_POS_Y = POS_Y + 300 - (this.IMAGE_HEIGHT / 2);
     private final int ANIMATION_DURATION = 200;
     private final int MELEE_ATTACK = 350;
     private final int IMAGE_HEIGHT = 114;
     private final int IMAGE_WIDTH = 50;
+    private final int START_POS_X = POS_X + 400 - (IMAGE_WIDTH / 2);
+    private final int START_POS_Y = POS_Y + 300 - (IMAGE_HEIGHT / 2);
     private Character character;
     private Input input;
 
     public SwordsManManager() {
         this.character = new SwordsMan("Player", HEALTH, MOVE_SPEED, ARMOR, LIGHT_RADIUS, POS_X, POS_Y, MELEE_ATTACK);
+        //this.character = new Minotaur("enemy", HEALTH, MOVE_SPEED, ARMOR, LIGHT_RADIUS, POS_X, POS_Y, MELEE_ATTACK);
     }
 
     public void createCharacter() {

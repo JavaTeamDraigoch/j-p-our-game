@@ -55,7 +55,7 @@ public class EnemiesManager {
         this.input = gameContainer.getInput();
 
         if (this.input.isKeyDown(Input.KEY_UP)) {
-            this.character.setPosY(0.2f);
+            this.character.setPosY(0.2f);   /// ако позицията на героя по Y намалява то позицията на ЕНЕМИ се променя
             detectMapBoundies();
 
             /// tova e za triene --- samo gledam ot nego
@@ -145,23 +145,26 @@ public class EnemiesManager {
 
     private void detectMapBoundies() {
         boolean isTopReached = this.character.getPosY() - this.POS_Y >= GameEngine.MOST_UP_COORDINATE;
+        //boolean isTopReached = this.getCharacter().getPosY() - this.
         if (isTopReached) {
-            //this.character.setPosY(-this.character.getMoveSpeed());
+            //this.character.setPosY(-0.2f);  /// ako Swordman isTopReach = true -> enemy.setPosY(+- 0.2f)
         }
+
+
 
         boolean isBottomReached = this.character.getPosY() - this.POS_Y - this.character.getImageHeight() <= GameEngine.MOST_DOWN_COORDINATE;
         if (isBottomReached) {
-            //this.character.setPosY(+this.character.getMoveSpeed());
+            //this.character.setPosY(0.2f);
         }
 
         boolean isLeftReached = this.character.getPosX() - this.POS_X >= GameEngine.MOST_LEFT_COORDINATE;
         if (isLeftReached) {
-            //this.character.setPosX(-this.character.getMoveSpeed());
+            //this.character.setPosX(-0.2f);
         }
 
         boolean isRightReached = this.character.getPosX() - this.POS_X - this.character.getImageWidth() <= GameEngine.MOST_RIGHT_COORDINATE;
         if (isRightReached) {
-           // this.character.setPosX(+this.character.getMoveSpeed());
+            //this.character.setPosX(0.2f);
         }
     }
 

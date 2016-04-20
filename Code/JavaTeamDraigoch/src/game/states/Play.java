@@ -52,16 +52,6 @@ public class Play extends BasicGameState {
 
         this.levelOneMap = new Image("resources/img/t.png");
 
-        //this.swordMan = new SwordsMan(0,0,"Alex"); /// x = 0 ?,y = 0 ?  starting position of our Character ;)
-
-        //for (int i = 0; i <= 2; i++) {
-
-        // this.minotaurs.add(new Minotaur( i * 100, 100));
-        //}
-
-        //this.minotaur1 = new Minotaur(900,900);
-        //this.minotaur2 = new Minotaur(300,300);
-
         this.swordsManManager.createCharacter();
 
         this.enemiesManager.createCharacter();
@@ -71,26 +61,16 @@ public class Play extends BasicGameState {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        this.levelOneMap.draw(this.swordsManManager.getCharacter().getPosX(), this.swordsManManager.getCharacter().getPosY() );
-
+        this.levelOneMap.draw(this.swordsManManager.getCharacter().getPosX(), this.swordsManManager.getCharacter().getPosY());
 
         this.swordsManManager.drawCharacter();
         this.enemiesManager.drawCharacter();
 
-
-
         graphics.drawString("X "+ this.swordsManManager.getCharacter().getPosX()+ "", 0, 30);
         graphics.drawString("Y "+ this.swordsManManager.getCharacter().getPosY()+ "", 0, 50);
-        // this.swordMan.render(gameContainer,graphics);
 
-        //this.minotaur1.render(gameContainer,graphics);
-        ///this.minotaur2.render(gameContainer,graphics);
-
-        // for(Minotaur minotaur: getMinotaurs()){
-
-        // minotaur.render(gameContainer,graphics);
-        //}
-
+        graphics.drawString("ENEMY X "+ this.enemiesManager.getCharacter().getPosX()+ "", 100, 30);
+        graphics.drawString("ENEMY Y "+ this.enemiesManager.getCharacter().getPosY()+ "", 100, 50);
 
     }
 
@@ -99,15 +79,6 @@ public class Play extends BasicGameState {
         this.swordsManManager.moveCharacter(gameContainer);
 
         this.enemiesManager.moveCharacter(gameContainer);
-        /// if mission accomplished stateBasedGame -- main menu or next level
-        // this.swordMan.update(gameContainer, this.stateID);
-        //this.minotaur1.update(gameContainer,this.stateID);
-        //this.minotaur2.update(gameContainer,this.stateID);
-
-        //for(Minotaur minotaur: getMinotaurs()){
-
-        // minotaur.update(gameContainer, this.stateID);
-        // }
 
     }
 }
