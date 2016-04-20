@@ -50,7 +50,8 @@ public class Play extends BasicGameState {
         //backGround = new Image("resources/img/basicGrid20x20.png");
         //levelOneMap = new Image("resources/img/World.png");
 
-        this.levelOneMap = new Image("resources/img/t.png");
+        //this.levelOneMap = new Image("resources/img/t.png");
+        this.levelOneMap = new Image("resources/img/Level1-Mockup.png");
 
         this.swordsManManager.createCharacter();
 
@@ -69,8 +70,8 @@ public class Play extends BasicGameState {
         graphics.drawString("X "+ this.swordsManManager.getCharacter().getPosX()+ "", 0, 30);
         graphics.drawString("Y "+ this.swordsManManager.getCharacter().getPosY()+ "", 0, 50);
 
-        graphics.drawString("ENEMY X "+ this.enemiesManager.getCharacter().getPosX()+ "", 100, 30);
-        graphics.drawString("ENEMY Y "+ this.enemiesManager.getCharacter().getPosY()+ "", 100, 50);
+        graphics.drawString("ENEMY X "+ this.enemiesManager.getCharacter().getPosX()+ "", 150, 30);
+        graphics.drawString("ENEMY Y "+ this.enemiesManager.getCharacter().getPosY()+ "", 150, 50);
 
     }
 
