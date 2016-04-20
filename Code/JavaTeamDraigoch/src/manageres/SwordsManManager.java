@@ -19,14 +19,17 @@ public class SwordsManManager {
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
     private final int POS_Y = 0;
-    private final int ANIMATION_DURATION = 200;
+    private final int ANIMATION_DURATION = 500;
     private final int MELEE_ATTACK = 350;
-    private final int IMAGE_HEIGHT = 114;
-    private final int IMAGE_WIDTH = 50;
+    private final int IMAGE_HEIGHT = 180;
+    private final int IMAGE_WIDTH = 156;
     private final int START_POS_X = POS_X + 400 - (IMAGE_WIDTH / 2);
     private final int START_POS_Y = POS_Y + 300 - (IMAGE_HEIGHT / 2);
     private Character character;
     private Input input;
+    private boolean walkUp, walkDown, walkLeft, walkRight, stopWalk = true;
+    private int[] supportStopWalk = {5 * IMAGE_WIDTH, 1};
+
 
     public SwordsManManager() {
         this.character = new SwordsMan("Player", HEALTH, MOVE_SPEED, ARMOR, LIGHT_RADIUS, POS_X, POS_Y, MELEE_ATTACK);
@@ -35,9 +38,11 @@ public class SwordsManManager {
 
     public void createCharacter() {
         try {
-            this.character.setSpriteSheet(new SpriteSheet("res/players/swordsman.png", START_POS_X, START_POS_Y));
+            this.character.setSpriteSheet(new SpriteSheet("resources/img/Player-Melee-Red.png", START_POS_X, START_POS_Y));
             this.character.setImageHeight(IMAGE_HEIGHT);
             this.character.setImageWidth(IMAGE_WIDTH);
+
+
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -50,15 +55,70 @@ public class SwordsManManager {
     }
 
     public void drawCharacter() {
-        character.getSpriteSheet().getSubImage(95, 587, 50, 114).draw(START_POS_X, START_POS_Y);
+
+        if (stopWalk){
+
+
+            character.getSpriteSheet().getSubImage(this.supportStopWalk[0], this.supportStopWalk[1], this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+        }
+
+
+        if (walkUp){
+
+            for (int i = 5; i <= 7; i++) {
+
+                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+
+            }
+        }
+        if (walkDown){
+
+            for (int i = 4; i >= 2; i--) {
+
+                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+
+            }
+
+        }
+        if (walkLeft){
+
+            for (int i = 4; i >= 2; i--) {
+
+                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+
+            }
+
+        }
+        if (walkRight){
+
+            for (int i = 5; i <= 7; i++) {
+
+                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+
+            }
+
+        }
+
+
     }
 
     public void moveCharacter(GameContainer gameContainer) {
         this.input = gameContainer.getInput();
 
+
+
         if (this.input.isKeyDown(Input.KEY_UP)) {
+
+            this.stopWalk = false;
+            this.supportStopWalk[0] = 5 * this.IMAGE_WIDTH;
+            this.supportStopWalk[1] = 1;
+
+            this.walkUp = true;
+
             this.character.setPosY(this.character.getMoveSpeed());
             detectMapBoundies();
+
+            //character.getSpriteSheet().getSubImage(5*156, 1, 156, 180).draw(START_POS_X, START_POS_Y);
 
 
 
@@ -76,9 +136,18 @@ public class SwordsManManager {
 
             }
             */
+        } else {
+            this.walkUp = false;
+            this.stopWalk = true;
         }
 
         if (this.input.isKeyDown(Input.KEY_DOWN)) {
+
+            this.stopWalk = false;
+            this.supportStopWalk[0] = 4 * this.IMAGE_WIDTH;
+            this.supportStopWalk[1] = this.IMAGE_HEIGHT;
+            this.walkDown = true;
+
             this.character.setPosY(-this.character.getMoveSpeed());
             detectMapBoundies();
 
@@ -96,9 +165,16 @@ public class SwordsManManager {
 
             }
             */
+        } else {
+            this.walkDown = false;
+            this.stopWalk = true;
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)) {
+            this.stopWalk = false;
+            this.supportStopWalk[0] = 4 * this.IMAGE_WIDTH;
+            this.supportStopWalk[1] = 1;
+            this.walkLeft = true;
             this.character.setPosX(+this.character.getMoveSpeed());
             detectMapBoundies();
 
@@ -111,9 +187,17 @@ public class SwordsManManager {
                 this.manCoordX -= this.getMoveSpeed();
             }
             */
+        } else {
+            this.walkLeft = false;
+            this.stopWalk = true;
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)) {
+
+            this.stopWalk = false;
+            this.supportStopWalk[0] = 5 * this.IMAGE_WIDTH;
+            this.supportStopWalk[1] = this.IMAGE_HEIGHT;
+            this.walkRight = true;
             this.character.setPosX(-this.character.getMoveSpeed());
             detectMapBoundies();
 
@@ -128,7 +212,11 @@ public class SwordsManManager {
                 this.manCoordX += this.getMoveSpeed();
             }
             */
+        } else {
+            this.walkRight = false;
+            this.stopWalk = true;
         }
+
     }
 
     private void detectEnemyCollision(List<Character> enemies) {
