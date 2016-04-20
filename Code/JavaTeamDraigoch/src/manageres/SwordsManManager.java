@@ -14,7 +14,7 @@ import contracts.Character;
  */
 public class SwordsManManager {
     private final int HEALTH = 500;
-    private final float MOVE_SPEED = 5f;
+    private final float MOVE_SPEED = 0.2f;
     private final int ARMOR = 800;
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
@@ -61,7 +61,7 @@ public class SwordsManManager {
 
 
         if (stopWalk){
-            fps(25);
+            //fps(45);
 
 
             character.getSpriteSheet().getSubImage(this.supportStopWalk[0], this.supportStopWalk[1], this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
@@ -71,7 +71,7 @@ public class SwordsManManager {
         if (walkUp){
             stopWalk =false;
 
-            fps(25);
+            //fps(45);
 
             character.getSpriteSheet()
                     .getSubImage(this.moveIndex * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
@@ -85,7 +85,7 @@ public class SwordsManManager {
         if (walkDown){
             stopWalk =false;
 
-            fps(25);
+            //fps(45);
 
             character.getSpriteSheet()
                     .getSubImage(this.moveIndexI * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
@@ -99,7 +99,7 @@ public class SwordsManManager {
         }
         if (walkLeft){
             stopWalk =false;
-            fps(25);
+            //fps(45);
 
             character.getSpriteSheet()
                     .getSubImage(this.moveIndexI * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
@@ -113,7 +113,7 @@ public class SwordsManManager {
         if (walkRight){
             stopWalk =false;
 
-            fps(25);
+           // fps(45);
 
             character.getSpriteSheet().getSubImage(this.moveIndex * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
 
