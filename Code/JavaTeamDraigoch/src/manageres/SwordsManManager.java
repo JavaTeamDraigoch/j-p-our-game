@@ -33,6 +33,8 @@ public class SwordsManManager {
 
     private int moveIndex = 5;
     private int moveIndexI =4;
+    private int moveIndexII = 8;
+    private int moveIndexIII = 1;
 
 
     public SwordsManManager() {
@@ -66,66 +68,65 @@ public class SwordsManManager {
 
 
 
-            // ENEMY IN RADIUS
+            //  && ENEMY IN RADIUS
             if (this.fight){
 
-                System.out.println("a");
+
                 // figth up
                 if (this.supportStopWalk[0] == 780 && this.supportStopWalk[1] == 1){
 
                     character.getSpriteSheet()
-                            .getSubImage(5 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .getSubImage(this.moveIndexII * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
                             .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(8 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(9 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
+
+                    this.moveIndexII++;
+                    if (this.moveIndexII == 10){
+                        this.moveIndexII = 8;
+                    }
 
                 }
 
                 //fight down
                 if (this.supportStopWalk[0] == 624 && this.supportStopWalk[1] == 180){
 
+
                     character.getSpriteSheet()
-                            .getSubImage(4 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .getSubImage(this.moveIndexIII * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
                             .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(1 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(0 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
+
+                    this.moveIndexIII--;
+                    if (this.moveIndexIII == -1){
+                        this.moveIndexIII = 1;
+                    }
                 }
 
                 //fight left
                 if (this.supportStopWalk[0] == 624 && this.supportStopWalk[1] == 1){
 
+
                     character.getSpriteSheet()
-                            .getSubImage(4 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(1 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(0 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .getSubImage(this.moveIndexIII * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
                             .draw(START_POS_X, START_POS_Y);
 
+                    this.moveIndexIII--;
+                    if (this.moveIndexIII == -1){
+                        this.moveIndexIII = 1;
+                    }
                 }
 
                 //fight right
                 if (this.supportStopWalk[0] == 780 && this.supportStopWalk[1] == 180){
 
+
                     character.getSpriteSheet()
-                            .getSubImage(5 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .getSubImage(this.moveIndexII * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
                             .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(8 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
-                    character.getSpriteSheet()
-                            .getSubImage(9 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
-                            .draw(START_POS_X, START_POS_Y);
+
+                    this.moveIndexII++;
+                    if (this.moveIndexII == 10){
+                        this.moveIndexII = 8;
+                    }
+
 
                 }
 
