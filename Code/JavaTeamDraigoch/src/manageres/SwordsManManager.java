@@ -14,7 +14,7 @@ import contracts.Character;
  */
 public class SwordsManManager {
     private final int HEALTH = 500;
-    private final float MOVE_SPEED = 0.2f;
+    private final float MOVE_SPEED = 5f;
     private final int ARMOR = 800;
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
@@ -29,6 +29,9 @@ public class SwordsManManager {
     private Input input;
     private boolean walkUp, walkDown, walkLeft, walkRight, stopWalk = true;
     private int[] supportStopWalk = {5 * IMAGE_WIDTH, 1};
+
+    private int moveIndex = 5;
+    private int moveIndexI =4;
 
 
     public SwordsManManager() {
@@ -56,7 +59,9 @@ public class SwordsManManager {
 
     public void drawCharacter() {
 
+
         if (stopWalk){
+            fps(25);
 
 
             character.getSpriteSheet().getSubImage(this.supportStopWalk[0], this.supportStopWalk[1], this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
@@ -64,39 +69,59 @@ public class SwordsManManager {
 
 
         if (walkUp){
+            stopWalk =false;
 
-            for (int i = 5; i <= 7; i++) {
+            fps(25);
 
-                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+            character.getSpriteSheet()
+                    .getSubImage(this.moveIndex * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                    .draw(START_POS_X, START_POS_Y);
 
+            this.moveIndex++;
+            if (this.moveIndex == 8){
+                this.moveIndex = 5;
             }
         }
         if (walkDown){
+            stopWalk =false;
 
-            for (int i = 4; i >= 2; i--) {
+            fps(25);
 
-                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+            character.getSpriteSheet()
+                    .getSubImage(this.moveIndexI * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                    .draw(START_POS_X, START_POS_Y);
 
+            this.moveIndexI--;
+            if (this.moveIndexI == 2){
+                this.moveIndexI = 4;
             }
 
         }
         if (walkLeft){
+            stopWalk =false;
+            fps(25);
 
-            for (int i = 4; i >= 2; i--) {
+            character.getSpriteSheet()
+                    .getSubImage(this.moveIndexI * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                    .draw(START_POS_X, START_POS_Y);
 
-                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
-
+            this.moveIndexI--;
+            if (this.moveIndexI == 2){
+                this.moveIndexI = 4;
             }
-
         }
         if (walkRight){
+            stopWalk =false;
 
-            for (int i = 5; i <= 7; i++) {
+            fps(25);
 
-                character.getSpriteSheet().getSubImage(i * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+            character.getSpriteSheet().getSubImage(this.moveIndex * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
 
+            this.moveIndex++;
+
+            if (this.moveIndex == 8){
+                this.moveIndex = 5;
             }
-
         }
 
 
@@ -171,6 +196,7 @@ public class SwordsManManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)) {
+
             this.stopWalk = false;
             this.supportStopWalk[0] = 4 * this.IMAGE_WIDTH;
             this.supportStopWalk[1] = 1;
@@ -246,5 +272,32 @@ public class SwordsManManager {
 
     public Character getCharacter() {
         return character;
+    }
+
+    public void fps(int fps){
+
+        //int fps = 10;
+
+        double ticksPerFrame = 1000000000/fps;
+
+        double passedTime = 0;
+
+        long now;
+        long lastTimeTicked = System.nanoTime();
+
+        while (true){
+
+            now = System.nanoTime();
+            passedTime += (now - lastTimeTicked) / ticksPerFrame;
+            lastTimeTicked = now;
+
+            if (passedTime >= 1){
+
+                passedTime--;
+                break;
+            }
+
+
+        }
     }
 }

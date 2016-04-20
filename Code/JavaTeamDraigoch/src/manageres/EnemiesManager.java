@@ -55,7 +55,7 @@ public class EnemiesManager {
         this.input = gameContainer.getInput();
 
         if (this.input.isKeyDown(Input.KEY_UP)) {
-            this.character.setPosY(0.2f);   /// ако позицията на героя по Y намалява то позицията на ЕНЕМИ се променя
+            this.character.setPosY(5f);   /// ако позицията на героя по Y намалява то позицията на ЕНЕМИ се променя
             detectMapBoundies();
 
             /// tova e za triene --- samo gledam ot nego
@@ -86,7 +86,7 @@ public class EnemiesManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_DOWN)) {
-            this.character.setPosY(-0.2f);
+            this.character.setPosY(-5f);
             detectMapBoundies();
 
 //            if (this.character.getPosY() < GameEngine.MOST_UP_COORDINATE - 1){
@@ -111,7 +111,7 @@ public class EnemiesManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_LEFT)) {
-            this.character.setPosX(0.2f);
+            this.character.setPosX(5f);
             detectMapBoundies();
 
             /*
@@ -126,7 +126,7 @@ public class EnemiesManager {
         }
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)) {
-            this.character.setPosX(-0.2f);
+            this.character.setPosX(-5f);
             detectMapBoundies();
 
             //Enemy move to detectEnemyCollision
