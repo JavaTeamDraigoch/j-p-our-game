@@ -4,6 +4,7 @@ import java.util.List;
 
 import characters.Enemy;
 import characters.Minotaur;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import game.GameEngine;
 import org.newdawn.slick.*;
 import characters.SwordsMan;
@@ -19,7 +20,7 @@ public class SwordsManManager {
     private final int LIGHT_RADIUS = 10;
     private final int POS_X = 0;
     private final int POS_Y = 0;
-    private final int ANIMATION_DURATION = 500;
+    private final int ANIMATION_DURATION = 10000;
     private final int MELEE_ATTACK = 350;
     private final int IMAGE_HEIGHT = 180;
     private final int IMAGE_WIDTH = 156;
@@ -27,7 +28,7 @@ public class SwordsManManager {
     private final int START_POS_Y = POS_Y + 300 - (IMAGE_HEIGHT / 2);
     private Character character;
     private Input input;
-    private boolean walkUp, walkDown, walkLeft, walkRight, stopWalk = true;
+    private boolean walkUp, walkDown, walkLeft, walkRight, stopWalk = true, fight = false;
     private int[] supportStopWalk = {5 * IMAGE_WIDTH, 1};
 
     private int moveIndex = 5;
@@ -50,11 +51,11 @@ public class SwordsManManager {
             e.printStackTrace();
         }
 
-        this.character.setStaying(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingUp(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingDown(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingLeft(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingRight(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setStaying(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingUp(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingDown(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingLeft(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingRight(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
     }
 
     public void drawCharacter() {
@@ -64,7 +65,78 @@ public class SwordsManManager {
             //fps(45);
 
 
-            character.getSpriteSheet().getSubImage(this.supportStopWalk[0], this.supportStopWalk[1], this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(START_POS_X, START_POS_Y);
+
+            // ENEMY IN RADIUS
+            if (this.fight){
+
+                System.out.println("a");
+                // figth up
+                if (this.supportStopWalk[0] == 780 && this.supportStopWalk[1] == 1){
+
+                    character.getSpriteSheet()
+                            .getSubImage(5 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(8 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(9 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+
+                }
+
+                //fight down
+                if (this.supportStopWalk[0] == 624 && this.supportStopWalk[1] == 180){
+
+                    character.getSpriteSheet()
+                            .getSubImage(4 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(1 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(0 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                }
+
+                //fight left
+                if (this.supportStopWalk[0] == 624 && this.supportStopWalk[1] == 1){
+
+                    character.getSpriteSheet()
+                            .getSubImage(4 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(1 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(0 * this.IMAGE_WIDTH, 1, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+
+                }
+
+                //fight right
+                if (this.supportStopWalk[0] == 780 && this.supportStopWalk[1] == 180){
+
+                    character.getSpriteSheet()
+                            .getSubImage(5 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(8 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+                    character.getSpriteSheet()
+                            .getSubImage(9 * this.IMAGE_WIDTH, this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                            .draw(START_POS_X, START_POS_Y);
+
+                }
+
+            } else {
+
+                character.getSpriteSheet()
+                        .getSubImage(this.supportStopWalk[0], this.supportStopWalk[1], this.IMAGE_WIDTH, this.IMAGE_HEIGHT)
+                        .draw(START_POS_X, START_POS_Y);
+
+
+            }
         }
 
 
@@ -128,12 +200,21 @@ public class SwordsManManager {
     }
 
     public void moveCharacter(GameContainer gameContainer) {
+
         this.input = gameContainer.getInput();
+
+        if (this.input.isMouseButtonDown(0)){
+
+            this.fight = true;
+        } else {
+            this.fight = false;
+        }
 
 
 
         if (this.input.isKeyDown(Input.KEY_UP)) {
 
+            this.fight = false;
             this.stopWalk = false;
             this.supportStopWalk[0] = 5 * this.IMAGE_WIDTH;
             this.supportStopWalk[1] = 1;
@@ -168,6 +249,7 @@ public class SwordsManManager {
 
         if (this.input.isKeyDown(Input.KEY_DOWN)) {
 
+            this.fight = false;
             this.stopWalk = false;
             this.supportStopWalk[0] = 4 * this.IMAGE_WIDTH;
             this.supportStopWalk[1] = this.IMAGE_HEIGHT;
@@ -197,6 +279,7 @@ public class SwordsManManager {
 
         if (this.input.isKeyDown(Input.KEY_LEFT)) {
 
+            this.fight = false;
             this.stopWalk = false;
             this.supportStopWalk[0] = 4 * this.IMAGE_WIDTH;
             this.supportStopWalk[1] = 1;
@@ -220,6 +303,7 @@ public class SwordsManManager {
 
         if (this.input.isKeyDown(Input.KEY_RIGHT)) {
 
+            this.fight = false;
             this.stopWalk = false;
             this.supportStopWalk[0] = 5 * this.IMAGE_WIDTH;
             this.supportStopWalk[1] = this.IMAGE_HEIGHT;
