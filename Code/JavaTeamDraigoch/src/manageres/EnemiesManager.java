@@ -21,8 +21,8 @@ public class EnemiesManager {
     private final int POS_Y = 30;
     private final int ANIMATION_DURATION = 200;
     private final int MELEE_ATTACK = 350;
-    private final int IMAGE_HEIGHT = 75;
-    private final int IMAGE_WIDTH = 50;
+    private final int IMAGE_HEIGHT = 180;
+    private final int IMAGE_WIDTH = 156;
     private Character character;
     private Input input;
 
@@ -33,22 +33,22 @@ public class EnemiesManager {
 
     public void createCharacter() {
         try {
-            this.character.setSpriteSheet(new SpriteSheet("resources/img/m.png", POS_X, POS_Y));
+            this.character.setSpriteSheet(new SpriteSheet("resources/img/Enemy-Melee-Teal.png", POS_X, POS_Y));
             this.character.setImageHeight(IMAGE_HEIGHT);
             this.character.setImageWidth(IMAGE_WIDTH);
         } catch (SlickException e) {
             e.printStackTrace();
         }
 
-        this.character.setStaying(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingUp(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingDown(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingLeft(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
-        this.character.setMovingRight(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setStaying(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingUp(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingDown(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingLeft(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
+//        this.character.setMovingRight(new Animation(this.character.getSpriteSheet(), this.ANIMATION_DURATION));
     }
 
     public void drawCharacter() {
-        character.getSpriteSheet().getSubImage(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT).draw(this.character.getPosX(), this.character.getPosY());
+        character.getSpriteSheet().getSubImage(4 * this.IMAGE_WIDTH  , this.IMAGE_HEIGHT, this.IMAGE_WIDTH, this.IMAGE_HEIGHT).draw(this.character.getPosX(), this.character.getPosY());
     }
 
     public void moveCharacter(GameContainer gameContainer) {

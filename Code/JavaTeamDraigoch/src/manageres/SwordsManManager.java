@@ -378,6 +378,8 @@ public class SwordsManManager {
 
             if (passedTime >= 1){
 
+
+
                 passedTime--;
                 break;
             }
